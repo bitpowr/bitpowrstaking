@@ -10,6 +10,8 @@ import MostRatedCollections from "widgets/home/mostRatedCollections";
 import Card from "common/components/card";
 import Tab from "common/components/tab";
 import Button from "common/components/button";
+import BalanceCard from "common/components/card/balanceCard";
+import Modal from "common/components/modal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,6 +37,7 @@ export default function Home() {
               </div>
             </Card>
           </div>
+
           <div>
             <Card>
               <div className="flex">
@@ -52,7 +55,9 @@ export default function Home() {
             </Card>
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-10">
+
+        <BalanceCard />
+        <div className="grid grid-cols-2 gap-10 mt-[40px]">
           <TopValidators />
           <MostRatedCollections />
         </div>
@@ -60,6 +65,8 @@ export default function Home() {
         <div className="mt-[36px]">
           <Tab />
         </div>
+
+        {/* <Modal visible={true}></Modal> */}
       </AppLayout>
     </>
   );

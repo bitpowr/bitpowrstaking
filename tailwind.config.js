@@ -17,6 +17,7 @@ module.exports = {
       colors: {
         background: "#E5E5E5",
         primary: "#5285F2",
+        blue_2: "#2E6BEF",
         orange: "#F57200",
         lightBlue: "linear-gradient(90deg, #DCE7FA 0%, #E5F2FA 100%)",
         lightOrange: "#FFEFE1",
