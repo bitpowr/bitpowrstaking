@@ -5,7 +5,7 @@ import profilePic from "../../public/logo.png";
 
 export default function Sidebar() {
   return (
-    <div className="mt-6">
+    <div className="mt-10">
       <div className="p-4 pt-0  mb-[30px]">
         <Image src={profilePic} alt="Logo" />
       </div>

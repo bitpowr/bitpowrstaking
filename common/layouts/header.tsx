@@ -6,8 +6,8 @@ type AppProps = {
 };
 export default function Header({ title }: AppProps) {
   return (
-    <div className=" flex-row  py-7 flex">
-      <div className="basis-1/3">{title}</div>
+    <div className=" flex-row  py-7 flex items-center">
+      <div className="basis-1/3 flex items-center">{title}</div>
       <div className="w-full flex justify-end items-center">
         <img
           className="w-10 h-10 rounded-full float-right"

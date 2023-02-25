@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+
+@font-face {
+        font-family: "Proxima Nova";
+        src: url(/static/font/ProximaNova/ProximaNova-Regular.ttf);
+    }
+
+    @font-face {
+        font-family: "Proxima Nova Semi-Bold";
+        src: url(/static/font/ProximaNova/ProximaNova-Semibold.ttf);
+    }
+
+    @font-face {
+        font-family: "Proxima Nova Bold";
+        src: url(/static/font/ProximaNova/ProximaNova-Bold.ttf);
+    }
+
+    @font-face {
+        font-family: Proxima Nova-Black;
+        src: url(/static/font/ProximaNova/ProximaNova-Black.ttf);
+    }
+
+
+
+    @font-face {
+        font-family: "Recoleta";
+        src: url(/static/font/recoleta/Recoleta-Regular.ttf);
+    }
+
+    @font-face {
+        font-family: "Recoleta Bold";
+        src: url(/static/font/recoleta/Recoleta-SemiBold.ttf);
+    }
+
+    html {
+        font-family: Proxima Nova, system-ui, sans-serif;
+    }
+
+
+}
