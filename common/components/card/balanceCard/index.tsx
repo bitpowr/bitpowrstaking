@@ -38,7 +38,7 @@ export default function BalanceCard() {
   ];
 
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid md:grid-cols-3 gap-4">
       {data?.map((data, index) => {
         // const background = `[url(/coin-1.png})]`;
         // console.log(background);
@@ -55,7 +55,7 @@ export default function BalanceCard() {
         return (
           <div key={index} className={`${outerBg[data.theme]}  p-2 rounded-xl`}>
             <div
-              className={`px-[24px]  pt-[32px] pb-[26px] bg-no-repeat bg-right-bottom ${
+              className={`px-[24px]  lg:bg-[length:40%] bg-[length:30%] pt-[32px] pb-[26px] bg-no-repeat bg-right-bottom ${
                 innerBg[data.theme]
               } ${data.img} `}
             >

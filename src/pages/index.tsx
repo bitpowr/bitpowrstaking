@@ -36,7 +36,7 @@ export default function Home() {
   return (
     <>
       <AppLayout>
-        <div className="grid grid-cols-2 gap-10 mb-[40px]">
+        <div className="grid lg:grid-cols-2 gap-10 mb-[40px]">
           <div>
             <Card
               style={{
@@ -103,7 +103,7 @@ export default function Home() {
         </div>
 
         <BalanceCard />
-        <div className="grid grid-cols-2 gap-10 mt-[40px]">
+        <div className="grid lg:grid-cols-2 gap-10 mt-[40px]">
           <MostRatedCollections />
           <TopValidators />
         </div>
