@@ -7,39 +7,68 @@
 
 @font-face {
         font-family: "Proxima Nova";
-        src: url(/static/font/ProximaNova/ProximaNova-Regular.ttf);
+        src: url(/font/ProximaNova/ProximaNova-Regular.ttf);
     }
 
     @font-face {
         font-family: "Proxima Nova Semi-Bold";
-        src: url(/static/font/ProximaNova/ProximaNova-Semibold.ttf);
+        src: url(/font/ProximaNova/ProximaNova-Semibold.ttf);
     }
 
     @font-face {
         font-family: "Proxima Nova Bold";
-        src: url(/static/font/ProximaNova/ProximaNova-Bold.ttf);
+        src: url(/font/ProximaNova/ProximaNova-Bold.ttf);
     }
 
     @font-face {
         font-family: Proxima Nova-Black;
-        src: url(/static/font/ProximaNova/ProximaNova-Black.ttf);
+        src: url(/font/ProximaNova/ProximaNova-Black.ttf);
     }
 
 
 
     @font-face {
         font-family: "Recoleta";
-        src: url(/static/font/recoleta/Recoleta-Regular.ttf);
+        src: url(/font/recoleta/Recoleta-SemiBold.ttf);
     }
 
     @font-face {
-        font-family: "Recoleta Bold";
-        src: url(/static/font/recoleta/Recoleta-SemiBold.ttf);
+        font-family: "Recoleta Semi-Bold";
+        src: url(/font/recoleta/Recoleta-SemiBold.ttf);
     }
+
+        @font-face {
+            font-family: Euclid;
+            src: url(/font/Euclid/EuclidCircularA-Light.ttf);
+        }
 
     html {
-        font-family: Proxima Nova, system-ui, sans-serif;
+        font-family: Proxima Nova
     }
 
+}
+.table div:nth-child(1) {
+    font-family: 'Euclid Circular A';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        /* identical to box height, or 171% */
+        display: flex;
+        align-items: center; 
+        /* Dark Neutral/Base */
+        color: #001540;
+}
 
+ .table div:nth-child(2) {
+    font-family: 'Proxima Nova';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        /* identical to box height, or 133% */
+        display: flex;
+        align-items: center;
+        /* Dark Neutral/Lighten 3 */
+        color: #647AA8;
 }

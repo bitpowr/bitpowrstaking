@@ -1,3 +1,4 @@
+import Typography from "common/components/typography";
 import { sidebarData } from "common/data/sidebar";
 import React from "react";
 
@@ -7,7 +8,9 @@ type AppProps = {
 export default function Header({ title }: AppProps) {
   return (
     <div className=" flex-row  py-7 flex items-center">
-      <div className="basis-1/3 flex items-center">{title}</div>
+      <div className="basis-1/3 flex items-center">
+        {<Typography label={title} variant="title" />}
+      </div>
       <div className="w-full flex justify-end items-center">
         <img
           className="w-10 h-10 rounded-full float-right"
@@ -15,9 +18,21 @@ export default function Header({ title }: AppProps) {
           alt="Rounded avatar"
         />
 
-        <div className="float-right">
-          <div>Erisan A.</div>
-          <div>123.3433</div>
+        <div className="float-right mx-3">
+          <div>
+            <Typography
+              color="text-dark-semi-dark"
+              label="Erisan A."
+              variant="body2"
+            />
+          </div>
+          <div>
+            <Typography
+              color="text-dark-semi-dark"
+              label="124535"
+              variant="body1"
+            />
+          </div>
         </div>
         <svg
           width={14}
