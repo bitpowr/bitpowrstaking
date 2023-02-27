@@ -9,8 +9,8 @@ export default function Sidebar() {
   const [active, setActive] = useState("");
 
   return (
-    <div className="mt-10">
-      <div className="p-4 pt-0  mb-[30px]">
+    <div className="mt-7">
+      <div className="py-4 pl-5 pt-0  mb-[20px]">
         <Image src={profilePic} alt="Logo" />
       </div>
 
@@ -25,7 +25,7 @@ export default function Sidebar() {
                 active == data.to
                   ? "bg-light-blue-2 border-r-primary"
                   : "bg-white border-r-white"
-              }  p-4 items-center cursor-pointer hover:bg-light-blue-2 border-r-4 hover:border-r-primary `}
+              }  py-4 pl-5 items-center cursor-pointer hover:bg-light-blue-2 border-r-4 hover:border-r-primary `}
             >
               <div
                 className="mr-3"

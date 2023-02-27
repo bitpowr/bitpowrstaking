@@ -1,15 +1,22 @@
 import React from "react";
 import { ReactChildrenPropsType } from "types/global";
 import Card from "../card";
+import Typography from "../typography";
 import Portal from "./portal";
 
 type ComponentProps = {
   children: ReactChildrenPropsType;
   onClose: Function;
+  title?: string;
   visible: boolean;
 };
 
-export default function Modal({ children, onClose, visible }: ComponentProps) {
+export default function Modal({
+  children,
+  title,
+  onClose,
+  visible,
+}: ComponentProps) {
   if (!visible) return null;
   return (
     <Portal selector="#modal">
@@ -18,9 +25,9 @@ export default function Modal({ children, onClose, visible }: ComponentProps) {
           background: "rgba(0, 14, 41, 0.7)",
           backdropFilter: "blur(10px)",
         }}
-        className="h-screen w-screen pt-[8%] flex bg-slate-500 fixed z-10 top-0  justify-center"
+        className="h-screen w-screen overflow-y-scroll  pt-[8%] flex fixed z-10 top-0  justify-center"
       >
-        <div className="w-1/3">
+        <div className="w-2/6">
           {" "}
           <div className="flex justify-end">
             <svg
@@ -39,8 +46,10 @@ export default function Modal({ children, onClose, visible }: ComponentProps) {
           </div>
           <div className="mt-5"></div>
           <Card>
+            {title && <Typography variant="subtitle" label={title} />}
             <>{children}</>
           </Card>
+          <div style={{ marginBottom: "50px" }}></div>
         </div>
       </div>
     </Portal>

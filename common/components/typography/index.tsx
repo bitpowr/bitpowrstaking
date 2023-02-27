@@ -1,17 +1,20 @@
 import React from "react";
+import { ReactChildrenPropsType } from "types/global";
 import Body from "./body";
 import Title from "./title";
 
 type ComponentProps = {
-  variant: "title" | "subtitle" | "heading3" | "body1" | "body2" | "body3";
-  label: string;
+  variant?: "title" | "subtitle" | "heading3" | "body1" | "body2" | "body3";
+  label?: string;
   color?: string;
   className?: string;
+  children?: ReactChildrenPropsType;
 };
 export default function Typography({
   className,
-  variant,
+  variant = "body1",
   color,
+  children,
   label,
 }: ComponentProps) {
   const classStyle = {
@@ -25,8 +28,10 @@ export default function Typography({
 
   return (
     <div
-      dangerouslySetInnerHTML={{ __html: label }}
+      dangerouslySetInnerHTML={{ __html: label ? label : "" }}
       className={`${classStyle[variant]} ${className}  `}
-    ></div>
+    >
+      {children}
+    </div>
   );
 }

@@ -1,21 +1,23 @@
 import Button from "common/components/button";
 import Card from "common/components/card";
+import { Upvotes } from "common/components/icons";
 import TextField from "common/components/input";
 import Score from "common/components/score";
 import Table from "common/components/table";
 import Typography from "common/components/typography";
+import Link from "next/link";
 import React, { useState } from "react";
 import DataTable, { TableColumn, Selector } from "react-data-table-component";
 import DelegateStake from "widgets/home/delegateStake";
-export default function ValidatorsTable() {
+export default function AllCollectionsTable() {
   const [delegateStake, setDelegateState] = useState(null);
 
   const columns = [
     {
-      name: "Validator Name",
+      name: "Collection Name",
       selector: (row) => (
         <>
-          <div className="flex">
+          <div className="flex items-center">
             <img
               className="min-w-10 w-10 h-10 rounded-full float-right object-cover"
               src="https://miro.medium.com/max/2400/1*SgM4XSJnPhGXVIqZayA-hg.png"
@@ -23,47 +25,45 @@ export default function ValidatorsTable() {
             />
             <div className="ml-3">
               <Typography color="text-dark" label={row.name} variant="body2" />
-              <div className="mt-1">
-                <Typography label={row.links} variant="body1" />
-              </div>
             </div>
           </div>
         </>
       ),
     },
     {
-      name: "Fee",
+      name: "Validators",
       selector: (row) => (
         <div className="">
-          <Typography color="text-dark" label={row?.fee} variant="body2" />
+          <Typography
+            color="text-dark"
+            label={row?.validators}
+            variant="body2"
+          />
         </div>
       ),
     },
     {
-      name: "Stake",
+      name: "Average Fee",
       selector: (row) => (
         <div className="">
-          <div>
-            <Typography color="text-dark" label={row?.stake} variant="body2" />
-          </div>
-          <div className="mt-1">
-            <Typography label={row.fiatAmount} variant="body1" />
-          </div>
-        </div>
-      ),
-    },
-    {
-      name: "Score",
-      selector: (row) => (
-        <div className="flex items-center">
-          <Score />
-          {"("}11{")"}
+          <Typography color="text-dark" label={row?.average} variant="body2" />
         </div>
       ),
     },
 
     {
-      name: "Delegators",
+      name: "Upvotes",
+      selector: (row) => (
+        <div className="flex items-center">
+          <Typography color="text-dark" label={row?.upvote} variant="body2" />
+          <div className="px-1"></div>
+          <Upvotes />
+        </div>
+      ),
+    },
+
+    {
+      name: "Created",
       selector: (row) => (
         <div className="">
           <div>
@@ -80,12 +80,14 @@ export default function ValidatorsTable() {
     {
       name: "Action",
       selector: (row) => (
-        <Button
-          onClick={() => setDelegateState(row)}
-          size="semi-big"
-          outline
-          label="Delegate"
-        />
+        <Link href={"/collections/" + row?.id}>
+          <Button
+            onClick={() => setDelegateState(row)}
+            size="semi-big"
+            outline
+            label="View Validators"
+          />
+        </Link>
       ),
     },
   ];
@@ -93,21 +95,27 @@ export default function ValidatorsTable() {
   const data = [
     {
       id: 1,
-      name: "P2P.ORG - P2P Validator",
-      links: "https://p2p.org",
-      fiatAmount: "$3,000",
-      fee: "5.5%",
+      name: "Burundo Samm",
+      validators: 12,
+      average: "14%",
+      upvote: 122,
       date: new Date(),
-      stake: "3,119,907.11 (0.84%)",
     },
     {
-      id: 2,
-      name: "P2P.ORG - P2P Validator",
-      links: "https://p2p.org",
+      id: 1,
+      name: "Burundo Samm",
+      validators: 12,
+      average: "14%",
+      upvote: 122,
       date: new Date(),
-      fiatAmount: "$3,000",
-      fee: "5.5%",
-      stake: "3,119,907.11 (0.84%)",
+    },
+    {
+      id: 1,
+      name: "Burundo Samm",
+      validators: 12,
+      average: "14%",
+      upvote: 122,
+      date: new Date(),
     },
   ];
 
@@ -122,15 +130,11 @@ export default function ValidatorsTable() {
   return (
     <Card>
       <Table
-        selectableRows
         rightComponent={rightComponent()}
-        title="Validators"
+        title="All Collections: 456"
         columns={columns}
         data={data}
       />
-      {delegateStake ? (
-        <DelegateStake onClose={() => setDelegateState(null)} visible={true} />
-      ) : null}
     </Card>
   );
 }

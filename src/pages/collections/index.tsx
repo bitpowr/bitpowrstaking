@@ -4,19 +4,20 @@ import Card from "common/components/card";
 import Button from "common/components/button";
 import Typography from "common/components/typography";
 import ValidatorsTable from "widgets/validators";
+import AllCollectionsTable from "widgets/collections/allCollections";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+export default function Collections() {
   // const { publicKey, signMessage } = useWallet();
 
   return (
     <>
-      <AppLayout headerTitle="Validators">
+      <AppLayout headerTitle="Collections">
         <div className="mb-[40px]">
           <div>
             <Card
-              className="relative bg-[url('/security.png')] bg-no-repeat bg-right-bottom bg-[length:30%]"
+              className="relative bg-[url('/collections.png')] bg-no-repeat bg-right-bottom bg-[length:30%]"
               background="bg-light-purple"
             >
               {/* Close icon */}
@@ -38,7 +39,7 @@ export default function Home() {
               <div className="w-1/2">
                 <Typography
                   variant="body3"
-                  label={`<span class='text-md text-dark font-recoleta'>Staking:</span> dolor sit amet, consectetur adipiscing elit. Libero
+                  label={`<span class='text-md text-dark font-recoleta'>Collection:</span> dolor sit amet, consectetur adipiscing elit. Libero
                 velit aliquet non habitasse eu mauris ... <a class="text-purple underline">Learn more</a>`}
                 ></Typography>
               </div>
@@ -48,7 +49,7 @@ export default function Home() {
                   <Button
                     onClick={() => ""}
                     theme="purple"
-                    label="Validators Performance"
+                    label="Create a collection"
                   />
                 </div>
 
@@ -71,7 +72,7 @@ export default function Home() {
                     </svg>
                   }
                   outline
-                  label="How to pick a validator"
+                  label="How it works"
                 />
               </div>
             </Card>
@@ -79,7 +80,7 @@ export default function Home() {
         </div>
 
         <div className="mt-[40px]">
-          <ValidatorsTable />
+          <AllCollectionsTable />
         </div>
 
         {/* <Modal visible={true}></Modal> */}

@@ -35,7 +35,7 @@ export default function Home() {
 
   return (
     <>
-      <AppLayout>
+      <AppLayout headerTitle="Staking">
         <div className="lg:grid lg:grid-cols-2 lg:gap-10 mb-[40px]">
           <div>
             <Card

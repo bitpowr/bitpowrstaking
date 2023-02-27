@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import { ReactChildrenPropsType } from "../../../types/global";
 
 type ComponentProp = {
@@ -7,6 +7,7 @@ type ComponentProp = {
   theme?: "primary" | "orange" | "purple";
   size?: "default" | "semi-big";
   outline?: boolean;
+  onClick: MouseEventHandler<HTMLButtonElement>;
   children?: ReactChildrenPropsType;
 };
 
@@ -14,6 +15,7 @@ export default function Button({
   leftComponent,
   label,
   outline,
+  onClick,
   theme = "primary",
   size = "default",
   children,
@@ -40,6 +42,7 @@ export default function Button({
 
   return (
     <button
+      onClick={onClick}
       style={{ borderWidth: "1px", ...heightStyle[size] }}
       className={`flex items-center ${paddingStyle[size]}    rounded-3xl ${themeStyle[theme]} `}
     >
