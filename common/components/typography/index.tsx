@@ -3,7 +3,7 @@ import Body from "./body";
 import Title from "./title";
 
 type ComponentProps = {
-  variant: "title" | "subtitle" | "heading3" | "body1" | "body2";
+  variant: "title" | "subtitle" | "heading3" | "body1" | "body2" | "body3";
   label: string;
   color?: string;
   className?: string;
@@ -20,6 +20,7 @@ export default function Typography({
     heading3: "",
     body1: `text-sm ${color ?? "text-light-color"}`,
     body2: `text-base ${color ?? "text-light-color"} `,
+    body3: `text-md ${color ?? "text-light-color"} `,
   };
 
   return (

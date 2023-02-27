@@ -4,7 +4,7 @@ import { ReactChildrenPropsType } from "../../../types/global";
 type ComponentProp = {
   leftComponent?: React.ReactNode;
   label?: string;
-  theme?: "primary" | "orange";
+  theme?: "primary" | "orange" | "purple";
   size?: "default" | "semi-big";
   outline?: boolean;
   children?: ReactChildrenPropsType;
@@ -21,6 +21,7 @@ export default function Button({
   const themeStyle = {
     primary: outline ? "border-primary text-primary" : "bg-primary text-white",
     orange: outline ? "border-orange text-orange" : "bg-orange text-white",
+    purple: outline ? "border-purple text-purple" : "bg-purple text-white",
   };
 
   const paddingStyle = {

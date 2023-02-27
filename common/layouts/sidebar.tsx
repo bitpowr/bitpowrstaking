@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import profilePic from "../../public/logo.png";
 
 export default function Sidebar() {
-  const [active, setActive] = useState();
+  const [active, setActive] = useState("");
 
   return (
     <div className="mt-10">
@@ -16,10 +16,10 @@ export default function Sidebar() {
 
       {sidebarData.map((data, index) => {
         return (
-          <Link key={index} href={""}>
+          <Link key={index} href={data.to}>
             <div
               onClick={() => {
-                setActive(data.to);
+                data?.to && setActive(data.to);
               }}
               className={`flex transition ease-in-out ${
                 active == data.to

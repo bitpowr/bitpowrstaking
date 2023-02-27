@@ -24,6 +24,8 @@ module.exports = {
         orange: "#F57200",
         "light-blue": "linear-gradient(90deg, #DCE7FA 0%, #E5F2FA 100%)",
         "light-blue-2": "rgba(82, 133, 242, 0.07)",
+        purple: "#7B79FF",
+        "light-purple": "#EDEDFF",
         "light-orange": "#FFEFE1",
         "light-hash": "#F5F6FA",
         "light-color": "#90A0C2",

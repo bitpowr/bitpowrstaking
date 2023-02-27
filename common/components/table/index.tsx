@@ -1,3 +1,4 @@
+import React from "react";
 import DataTable from "react-data-table-component";
 import Typography from "../typography";
 
@@ -25,6 +26,7 @@ export default function Table({
   columns,
   data,
   title,
+  selectableRows,
   rightComponent,
   leftComponent,
 }: {
@@ -32,8 +34,15 @@ export default function Table({
   data: any[];
   title?: string;
   leftComponent?: React.ReactElement;
+  selectableRows?: boolean;
   rightComponent?: React.ReactElement;
 }) {
+  const [selectedRows, setSelectedRows] = React.useState([]);
+
+  const handleRowSelected = React.useCallback((state) => {
+    setSelectedRows(state.selectedRows);
+  }, []);
+
   return (
     <>
       <div className="w-full flex items-center mb-[25px] justify-between">
@@ -62,7 +71,14 @@ export default function Table({
         </div>
         <div>{rightComponent}</div>
       </div>
-      <DataTable columns={columns} customStyles={customStyles} data={data} />
+      <DataTable
+        sortIcon="ksk"
+        onSelectedRowsChange={handleRowSelected}
+        columns={columns}
+        selectableRows={selectableRows}
+        customStyles={customStyles}
+        data={data}
+      />
     </>
   );
 }
