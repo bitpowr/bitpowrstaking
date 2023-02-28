@@ -14,13 +14,17 @@ import BalanceCard from "common/components/card/balanceCard";
 import Modal from "common/components/modal";
 import Typography from "common/components/typography";
 import TransactionHistory from "widgets/home/transactionHistory";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import StakedAccount from "widgets/home/stackedAccount";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   // const { publicKey, signMessage } = useWallet();
+
+  // useEffect(() => {
+  //   console.log("100" - 4, "jsjsj");
+  // }, []);
 
   const tabData = [
     {

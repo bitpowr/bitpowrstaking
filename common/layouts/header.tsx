@@ -12,7 +12,7 @@ export default function Header({ breadcrumbs, title }: AppProps) {
   const [showAddressPopup, setShowAddressPopup] = useState(true);
   const [delegateStake, setDelegateState] = useState(false);
   const [showOptionToSwitchNetwork, setShowOptionToSwitchNetwork] =
-    useState(false);
+    useState(true);
   const popupRef = useRef("");
 
   const handleClosePopup = (e: any) => {
@@ -52,6 +52,9 @@ export default function Header({ breadcrumbs, title }: AppProps) {
         <div className="relative  pl-3 inline-block text-left">
           <div>
             <button
+              onClick={() => {
+                setShowAddressPopup(!setShowAddressPopup);
+              }}
               type="button"
               className="px-4 py-1 inline-flex rounded-xl items-center text-9xl w-full justify-center rounded-md border border-gray-300 bg-white text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100"
               id="menu-button"
@@ -152,18 +155,19 @@ To: "transform opacity-0 scale-95"
               </li>
               <li className="mt-4">
                 <div id="accordionExample5 ">
-                  <div className="rounded-lg border border-neutral-200 bg-white  ">
+                  <div className="rounded-lg border border-neutral-200 ">
                     <h2 className="mb-0" id="headingOne5">
                       <button
-                        onClick={() => {
-                          setShowOptionToSwitchNetwork(
-                            !showOptionToSwitchNetwork
-                          );
-                        }}
+                        // onClick={() => {
+                        //   setShowOptionToSwitchNetwork(
+                        //     !showOptionToSwitchNetwork
+                        //   );
+                        // }}
                         className="group  relative flex w-full items-center rounded-lg  py-2 px-5 text-left text-base  transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none"
                         type="button"
                         data-te-collapse-init=""
                         data-te-target="#collapseOne5"
+                        // style={{ backgroundColor: "r)" }}
                         aria-expanded="true"
                         aria-controls="collapseOne5"
                       >
@@ -264,6 +268,7 @@ To: "transform opacity-0 scale-95"
           </div>
         </div>
 
+        <div className="mx-4"></div>
         <Button onClick={() => ""}>Connect wallet</Button>
 
         {/* <div className="relative  pl-3 inline-block text-left">
