@@ -39,7 +39,7 @@ export default function Table({
 }) {
   const [selectedRows, setSelectedRows] = React.useState([]);
 
-  const handleRowSelected = React.useCallback((state) => {
+  const handleRowSelected = React.useCallback((state: any) => {
     setSelectedRows(state.selectedRows);
   }, []);
 

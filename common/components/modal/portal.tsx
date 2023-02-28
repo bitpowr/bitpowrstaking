@@ -7,7 +7,7 @@ type ComponentProps = {
   children: ReactChildrenPropsType;
 };
 export default function Portal({ children, selector }: ComponentProps) {
-  const ref = useRef();
+  const ref = useRef<Element | null>();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

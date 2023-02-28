@@ -1,7 +1,13 @@
 import React, { useState } from "react";
-import Card from "../card";
 
-export default function Tab({ data: tabData }) {
+type componentProps = {
+  data: {
+    header: string;
+    component: React.ReactNode;
+  }[];
+};
+
+export default function Tab({ data: tabData }: componentProps) {
   const [current, setCurrent] = useState(tabData[0].header);
 
   return (

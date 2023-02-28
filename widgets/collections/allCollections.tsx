@@ -7,7 +7,7 @@ import Table from "common/components/table";
 import Typography from "common/components/typography";
 import Link from "next/link";
 import React, { useState } from "react";
-import DataTable, { TableColumn } from "react-data-table-component";
+import DataTable, { Selector, TableColumn } from "react-data-table-component";
 import DelegateStake from "widgets/home/delegateStake";
 export default function AllCollectionsTable() {
   const [delegateStake, setDelegateState] = useState(null);
@@ -16,6 +16,7 @@ export default function AllCollectionsTable() {
     name: string;
     validators: string;
     average: string;
+    selector: Selector<DataRow>;
     id: number;
     date: string;
     upvote: string;

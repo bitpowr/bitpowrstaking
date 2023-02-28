@@ -15,7 +15,7 @@ export default function Header({ breadcrumbs, title }: AppProps) {
     useState(false);
   const popupRef = useRef("");
 
-  const handleClosePopup = (e) => {
+  const handleClosePopup = (e: any) => {
     console.log(e.target);
     if (
       popupRef?.current &&
@@ -26,7 +26,7 @@ export default function Header({ breadcrumbs, title }: AppProps) {
       setShowOptionPopup(false);
     }
   };
-  const handleWindowClick = useCallback((e) => {
+  const handleWindowClick = useCallback((e: MouseEvent): void => {
     handleClosePopup(e);
   }, []);
 
