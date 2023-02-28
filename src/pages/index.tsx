@@ -55,10 +55,11 @@ export default function Home() {
 
               <div className="md:flex mt-[23px]">
                 <div className="mr-6 md:mb-0 mb-2">
-                  <Button label="Create New Stake" />
+                  <Button onClick={() => ""} label="Create New Stake" />
                 </div>
 
                 <Button
+                  onClick={() => ""}
                   leftComponent={
                     <svg
                       width={24}
@@ -94,7 +95,12 @@ export default function Home() {
                   </div>
 
                   <div>
-                    <Button theme="orange" outline label="How It works" />
+                    <Button
+                      onClick={() => ""}
+                      theme="orange"
+                      outline
+                      label="How It works"
+                    />
                   </div>
                 </div>
               </div>

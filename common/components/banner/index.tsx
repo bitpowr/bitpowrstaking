@@ -8,7 +8,7 @@ type componentProps = {
   ctaLink?: string;
   theme?: "warning";
   title: string;
-  textLg: string;
+  textLg?: string;
 };
 
 export default function Banner({

@@ -6,7 +6,7 @@ import Sidebar from "./sidebar";
 type AppProps = {
   children: ReactChildrenPropsType;
   headerTitle: string;
-  breadcrumbs: string;
+  breadcrumbs?: string;
 };
 
 export default function AppLayout({
@@ -23,7 +23,7 @@ export default function AppLayout({
           </div>
 
           <div className="w-full md:h-screen overflow-x-hidden overflow-y-scroll lg:px-[40px]md:px-[30px] px-[20px] pb-16">
-            <Header breadcrumbs={breadcrumbs} title={headerTitle} />
+            <Header breadcrumbs={breadcrumbs || ""} title={headerTitle} />
             <div className="mt-[20px]"></div>
 
             {children}
