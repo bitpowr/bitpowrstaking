@@ -6,10 +6,23 @@ import Typography from "common/components/typography";
 import React from "react";
 import DataTable, { TableColumn, Selector } from "react-data-table-component";
 export default function StakedAccount() {
-  const columns = [
+  interface DataRow {
+    name: string;
+    validators: string;
+    fiatAmount: string;
+    cryptoAmount: string;
+    account_id: string;
+    id: number;
+    date: string;
+    links: string;
+    earnings: string;
+    // selector: (d: any) => React.ReactElement;
+  }
+
+  const columns: TableColumn<DataRow>[] = [
     {
       name: "Validator",
-      selector: (row) => (
+      cell: (row) => (
         <>
           <div className="flex">
             <img
@@ -29,7 +42,7 @@ export default function StakedAccount() {
     },
     {
       name: "Staked Amount",
-      selector: (row) => (
+      cell: (row) => (
         <div className="">
           <div>
             <Typography
@@ -46,7 +59,7 @@ export default function StakedAccount() {
     },
     {
       name: "Earnings",
-      selector: (row) => (
+      cell: (row) => (
         <div className="">
           <div>
             <Typography
@@ -63,7 +76,7 @@ export default function StakedAccount() {
     },
     {
       name: "Account ID",
-      selector: (row) => (
+      cell: (row) => (
         <div className="flex items-center">
           <Typography
             color="text-dark"
@@ -87,7 +100,7 @@ export default function StakedAccount() {
     },
     {
       name: "Date",
-      selector: (row) => (
+      cell: (row) => (
         <div className="">
           <div>
             <Typography
@@ -102,7 +115,9 @@ export default function StakedAccount() {
 
     {
       name: "Action",
-      selector: (row) => <Button size="semi-big" outline label="View" />,
+      cell: (row) => (
+        <Button onClick={() => {}} size="semi-big" outline label="View" />
+      ),
     },
   ];
 
@@ -135,7 +150,9 @@ export default function StakedAccount() {
   return (
     <Card>
       <Table
-        rightComponent={<Button size="semi-big" outline label="View All" />}
+        rightComponent={
+          <Button onClick={() => ""} size="semi-big" outline label="View All" />
+        }
         title="Transaction History"
         columns={columns}
         data={data}

@@ -5,10 +5,22 @@ import Typography from "common/components/typography";
 import React from "react";
 import DataTable, { TableColumn, Selector } from "react-data-table-component";
 export default function TopValidators() {
-  const columns = [
+  interface DataRow {
+    name: string;
+    validators: string;
+    average: string;
+    votes: string;
+    percent: string;
+    id: number;
+    date: string;
+    upvote: string;
+    // selector: (d: any) => React.ReactElement;
+  }
+
+  const columns: TableColumn<DataRow>[] = [
     {
       name: "Collection",
-      selector: (row) => (
+      cell: (row) => (
         <>
           <div className="flex">
             <img
@@ -28,7 +40,7 @@ export default function TopValidators() {
     },
     {
       name: "No of Validators",
-      selector: (row) => (
+      cell: (row) => (
         <div className="">
           <div>
             <Typography
@@ -45,7 +57,9 @@ export default function TopValidators() {
     },
     {
       name: "Action",
-      selector: (row) => <Button size="semi-big" outline label="View" />,
+      cell: (row) => (
+        <Button onClick={() => ""} size="semi-big" outline label="View" />
+      ),
     },
   ];
 
@@ -83,7 +97,9 @@ export default function TopValidators() {
   return (
     <Card>
       <Table
-        rightComponent={<Button size="semi-big" outline label="View All" />}
+        rightComponent={
+          <Button onClick={() => ""} size="semi-big" outline label="View All" />
+        }
         title="Most Rated Collections"
         columns={columns}
         data={data}

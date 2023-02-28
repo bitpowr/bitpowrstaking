@@ -8,12 +8,28 @@ import React, { useState } from "react";
 import DataTable, { TableColumn, Selector } from "react-data-table-component";
 import DelegateStake from "widgets/home/delegateStake";
 export default function ValidatorsTable() {
-  const [delegateStake, setDelegateState] = useState(null);
+  interface DataRow {
+    name: string;
+    validators: string;
+    fiatAmount: string;
+    cryptoAmount: string;
+    stake: string;
+    account_id: string;
+    id: number;
+    status: "active" | "pending";
+    date: string;
+    links: string;
+    fee: string;
+    earnings: string;
+    // selector: (d: any) => React.ReactElement;
+  }
 
-  const columns = [
+  const [delegateStake, setDelegateState] = useState<DataRow | null>(null);
+
+  const columns: TableColumn<DataRow>[] = [
     {
       name: "Validator Name",
-      selector: (row) => (
+      cell: (row) => (
         <>
           <div className="flex">
             <img
@@ -33,7 +49,7 @@ export default function ValidatorsTable() {
     },
     {
       name: "Fee",
-      selector: (row) => (
+      cell: (row) => (
         <div className="">
           <Typography color="text-dark" label={row?.fee} variant="body2" />
         </div>
@@ -41,7 +57,7 @@ export default function ValidatorsTable() {
     },
     {
       name: "Stake",
-      selector: (row) => (
+      cell: (row) => (
         <div className="">
           <div>
             <Typography color="text-dark" label={row?.stake} variant="body2" />
@@ -54,7 +70,7 @@ export default function ValidatorsTable() {
     },
     {
       name: "Score",
-      selector: (row) => (
+      cell: (row) => (
         <div className="flex items-center">
           <Score />
           {"("}11{")"}
@@ -64,7 +80,7 @@ export default function ValidatorsTable() {
 
     {
       name: "Delegators",
-      selector: (row) => (
+      cell: (row) => (
         <div className="">
           <div>
             <Typography
@@ -79,7 +95,7 @@ export default function ValidatorsTable() {
 
     {
       name: "Action",
-      selector: (row) => (
+      cell: (row) => (
         <Button
           onClick={() => setDelegateState(row)}
           size="semi-big"

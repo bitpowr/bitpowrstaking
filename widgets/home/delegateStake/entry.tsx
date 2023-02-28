@@ -8,7 +8,7 @@ import React, { MouseEventHandler } from "react";
 
 type componentProps = {
   handleShowCalculator: MouseEventHandler<HTMLSpanElement>;
-  onSuccess: MouseEventHandler<HTMLButtonElement>;
+  onSuccess: Function;
 };
 export default function DelegateStakeEntry({
   handleShowCalculator,

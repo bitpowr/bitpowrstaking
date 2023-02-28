@@ -5,10 +5,23 @@ import Typography from "common/components/typography";
 import React from "react";
 import DataTable, { TableColumn, Selector } from "react-data-table-component";
 export default function TopValidators() {
-  const columns = [
+  interface DataRow {
+    name: string;
+    validators: string;
+    fiatAmount: string;
+    cryptoAmount: string;
+    account_id: string;
+    id: number;
+    percent: string;
+    link: string;
+    earnings: string;
+    // selector: (d: any) => React.ReactElement;
+  }
+
+  const columns: TableColumn<DataRow>[] = [
     {
       name: "Validator",
-      selector: (row) => (
+      cell: (row) => (
         <>
           <div className="flex">
             <img
@@ -28,7 +41,7 @@ export default function TopValidators() {
     },
     {
       name: "Fee",
-      selector: (row) => (
+      cell: (row) => (
         <div className="">
           <div>
             <Typography
@@ -45,7 +58,9 @@ export default function TopValidators() {
     },
     {
       name: "Action",
-      selector: (row) => <Button size="semi-big" outline label="Delegate" />,
+      cell: (row) => (
+        <Button onClick={() => {}} size="semi-big" outline label="Delegate" />
+      ),
     },
   ];
 
@@ -79,7 +94,9 @@ export default function TopValidators() {
   return (
     <Card>
       <Table
-        rightComponent={<Button size="semi-big" outline label="View All" />}
+        rightComponent={
+          <Button onClick={() => {}} size="semi-big" outline label="View All" />
+        }
         title="Top Validators"
         columns={columns}
         data={data}

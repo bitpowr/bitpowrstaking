@@ -7,7 +7,7 @@ type componentProps = {
   children?: React.ReactNode;
   ctaLink?: string;
   theme?: "warning";
-  title: string;
+  title?: string;
   textLg?: string;
 };
 

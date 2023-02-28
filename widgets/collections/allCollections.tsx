@@ -10,8 +10,6 @@ import React, { useState } from "react";
 import DataTable, { Selector, TableColumn } from "react-data-table-component";
 import DelegateStake from "widgets/home/delegateStake";
 export default function AllCollectionsTable() {
-  const [delegateStake, setDelegateState] = useState(null);
-
   interface DataRow {
     name: string;
     validators: string;
@@ -23,10 +21,12 @@ export default function AllCollectionsTable() {
     // selector: (d: any) => React.ReactElement;
   }
 
+  const [delegateStake, setDelegateState] = useState<DataRow | null>(null);
+
   const columns: TableColumn<DataRow>[] = [
     {
       name: "Collection Name",
-      selector: (row) => (
+      cell: (row) => (
         <>
           <div className="flex items-center">
             <img
@@ -43,7 +43,7 @@ export default function AllCollectionsTable() {
     },
     {
       name: "Validators",
-      selector: (row) => (
+      cell: (row) => (
         <div className="">
           <Typography
             color="text-dark"
@@ -55,7 +55,7 @@ export default function AllCollectionsTable() {
     },
     {
       name: "Average Fee",
-      selector: (row) => (
+      cell: (row) => (
         <div className="">
           <Typography color="text-dark" label={row?.average} variant="body2" />
         </div>
@@ -64,7 +64,7 @@ export default function AllCollectionsTable() {
 
     {
       name: "Upvotes",
-      selector: (row) => (
+      cell: (row) => (
         <div className="flex items-center">
           <Typography color="text-dark" label={row?.upvote} variant="body2" />
           <div className="px-1"></div>
@@ -75,7 +75,7 @@ export default function AllCollectionsTable() {
 
     {
       name: "Created",
-      selector: (row) => (
+      cell: (row) => (
         <div className="">
           <div>
             <Typography
@@ -90,7 +90,7 @@ export default function AllCollectionsTable() {
 
     {
       name: "Action",
-      selector: (row) => (
+      cell: (row) => (
         <Link href={"/collections/" + row?.id}>
           <Button
             onClick={() => setDelegateState(row)}
