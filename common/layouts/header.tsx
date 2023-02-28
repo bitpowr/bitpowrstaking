@@ -152,7 +152,7 @@ To: "transform opacity-0 scale-95"
               </li>
               <li className="mt-4">
                 <div id="accordionExample5 ">
-                  <div className="rounded-lg border border-neutral-200 bg-white  ">
+                  <div className="rounded-lg border border-neutral-200 ">
                     <h2 className="mb-0" id="headingOne5">
                       <button
                         onClick={() => {
@@ -164,6 +164,7 @@ To: "transform opacity-0 scale-95"
                         type="button"
                         data-te-collapse-init=""
                         data-te-target="#collapseOne5"
+                        // style={{ backgroundColor: "r)" }}
                         aria-expanded="true"
                         aria-controls="collapseOne5"
                       >
