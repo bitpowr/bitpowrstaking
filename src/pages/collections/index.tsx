@@ -84,6 +84,7 @@ export default function Collections() {
         </div>
 
         {/* <Modal visible={true}></Modal> */}
+        
       </AppLayout>
     </>
   );
