@@ -1,19 +1,37 @@
+import { useWallet } from "@solana/wallet-adapter-react";
 import Button from "common/components/button";
 import Typography from "common/components/typography";
+
+import dynamic from 'next/dynamic';
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
 type AppProps = {
   title: string;
   breadcrumbs: string;
+  account?: any
 };
-export default function Header({ breadcrumbs, title }: AppProps) {
+
+const WalletDisconnectButtonDynamic = dynamic(
+  async () => (await import('@solana/wallet-adapter-react-ui')).WalletDisconnectButton,
+  { ssr: false }
+);
+
+const WalletMultiButtonDynamic = dynamic(
+  async () => (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
+  { ssr: false }
+);
+
+export default function Header({ breadcrumbs, title, account }: AppProps) {
+
   const [showOptionPopup, setShowOptionPopup] = useState(false);
   const [showAddressPopup, setShowAddressPopup] = useState(true);
   const [delegateStake, setDelegateState] = useState(false);
   const [showOptionToSwitchNetwork, setShowOptionToSwitchNetwork] =
     useState(true);
   const popupRef = useRef("");
+
+
 
   const handleClosePopup = (e: any) => {
     console.log(e.target);
@@ -77,7 +95,7 @@ export default function Header({ breadcrumbs, title }: AppProps) {
                 <path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" />
                 <line x1={9} y1={13} x2={15} y2={13} />
               </svg>
-              SgM4XSJn...PhGXVIqZayA
+              {account?.toBase58()}
             </button>
           </div>
           {/*
@@ -91,11 +109,10 @@ From: "transform opacity-100 scale-100"
 To: "transform opacity-0 scale-95"
   */}
           <div
-            className={`absolute mt-3 ${
-              showAddressPopup
-                ? "transform opacity-100 scale-100"
-                : "transform opacity-0 scale-95"
-            } 
+            className={`absolute mt-3 ${showAddressPopup
+              ? "transform opacity-100 scale-100"
+              : "transform opacity-0 scale-95"
+              } 
             z-10 block bg-white divide-y divide-gray-100 rounded-lg shadow px-3 py-3 dark:bg-gray-700 dark:divide-gray-600
             
 `}
@@ -203,37 +220,38 @@ To: "transform opacity-0 scale-95"
                     </h2>
                     <div
                       id="collapseOne5"
-                      className={`${
-                        showOptionToSwitchNetwork ? "!visible" : "hidden"
-                      }`}
+                      className={`${showOptionToSwitchNetwork ? "!visible" : "hidden"
+                        }`}
                       data-te-collapse-item=""
                       data-te-collapse-show=""
                       aria-labelledby="headingOne5"
                     >
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
-                          TESTNET
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
-                          MAINNET
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
-                          DEVNET
-                        </a>
-                      </li>
+                      <ul>
+                        <li>
+                          <a
+                            href="#"
+                            className="block px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >
+                            TESTNET
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            className="block px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >
+                            MAINNET
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            className="block px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >
+                            DEVNET
+                          </a>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -269,7 +287,11 @@ To: "transform opacity-0 scale-95"
         </div>
 
         <div className="mx-4"></div>
-        <Button onClick={() => ""}>Connect wallet</Button>
+        {/* <Button onClick={() => ""}>Connect wallet</Button> */}
+        <WalletMultiButtonDynamic />
+        {/* <WalletDisconnectButtonDynamic /> */}
+
+
 
         {/* <div className="relative  pl-3 inline-block text-left">
           <div>

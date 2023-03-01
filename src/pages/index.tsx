@@ -25,7 +25,6 @@ export default function Home() {
   // useEffect(() => {
   //   console.log("100" - 4, "jsjsj");
   // }, []);
-
   const tabData = [
     {
       header: "Staked Accounts",

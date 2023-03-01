@@ -1,3 +1,4 @@
+import { useWallet } from "@solana/wallet-adapter-react";
 import React from "react";
 import { ReactChildrenPropsType } from "types/global";
 import Header from "./header";
@@ -14,6 +15,8 @@ export default function AppLayout({
   headerTitle,
   children,
 }: AppProps) {
+  const { publicKey, wallet, disconnect } = useWallet();
+
   return (
     <>
       <div className="w-screen lg:h-screen overflow-hidden bg-background">
@@ -23,7 +26,7 @@ export default function AppLayout({
           </div>
 
           <div className="w-full md:h-screen overflow-x-hidden overflow-y-scroll lg:px-[40px]md:px-[30px] px-[20px] pb-16">
-            <Header breadcrumbs={breadcrumbs || ""} title={headerTitle} />
+            <Header  account={publicKey} breadcrumbs={breadcrumbs || ""} title={headerTitle} />
             <div className="mt-[20px]"></div>
 
             {children}

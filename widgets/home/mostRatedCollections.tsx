@@ -79,14 +79,14 @@ export default function TopValidators() {
       percent: "Avg Fee: 6%",
     },
     {
-      id: 1,
+      id: 3,
       name: "Coin Bureau",
       votes: "459 upvotes",
       validators: "30",
       percent: "Avg Fee: 6%",
     },
     {
-      id: 2,
+      id: 4,
       name: "Lindsey List",
       votes: "459 upvotes",
       validators: "100",
