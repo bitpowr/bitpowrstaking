@@ -1,5 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiResponse } from "next";
 import nc from "next-connect";
+import { CustomNextAPIRequest } from "types/next";
 
 
 /** Error Parser
@@ -23,10 +24,10 @@ export function parseError(error: any): { errorCode: number, errorMsg: string } 
             errorMsg = error.response.data.message;
         }
     }
-    return { errorCode, errorMsg: errorMsg.trim() };
+    return { errorCode, errorMsg: errorMsg?.trim() };
 }
 
-const errorHandler = (err: any, req: NextApiRequest, res: NextApiResponse) => {
+const errorHandler = (err: any, req: CustomNextAPIRequest, res: NextApiResponse) => {
     const error = parseError(err)
     res.status(error.errorCode).json({ message: error.errorMsg, statusCode: error.errorCode })
 }
@@ -34,9 +35,9 @@ const errorHandler = (err: any, req: NextApiRequest, res: NextApiResponse) => {
 function handlerEvent() {
 
 
-    const handler = nc<NextApiRequest, NextApiResponse>({
+    const handler = nc<CustomNextAPIRequest, NextApiResponse>({
         onError: errorHandler,
-        onNoMatch: (req: NextApiRequest, res: NextApiResponse) => {
+        onNoMatch: (req: CustomNextAPIRequest, res: NextApiResponse) => {
             res.status(404).json({ message: "Not found!" })
         }
     });

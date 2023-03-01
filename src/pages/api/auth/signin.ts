@@ -5,8 +5,8 @@ import { validateSchema, withMiddleware } from "middleware";
 
 
 const schema = Joi.object({
-    message: Joi.string().required(),
-    signature: Joi.string().required(),
+    message: Joi.any().required(),
+    signature: Joi.any().required(),
     publicKey: Joi.string().required()
 })
 
