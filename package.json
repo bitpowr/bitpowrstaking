@@ -9,7 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@solana/wallet-adapter-base": "^0.9.22",
     "@solana/wallet-adapter-react": "^0.15.30",
+    "@solana/wallet-adapter-react-ui": "^0.9.29",
     "@solana/web3.js": "^1.73.2",
     "@types/node": "18.14.1",
     "@types/react": "18.0.28",
@@ -24,6 +28,7 @@
     "jsonwebtoken": "^9.0.0",
     "next": "13.2.0",
     "next-connect": "^0.13.0",
+    "notistack": "^2.0.8",
     "react": "18.2.0",
     "react-data-table-component": "^7.5.3",
     "react-dom": "18.2.0",

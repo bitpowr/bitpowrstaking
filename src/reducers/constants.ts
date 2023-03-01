@@ -1,0 +1,6 @@
+export const constants = {
+    CONNECT_WALLET: "CONNECT_WALLET",
+    LOADING: "LOADING",
+    GET_VALIDATORS: "GET_VALIDATORS",
+    APP_MODE: "APP_MODE"
+}

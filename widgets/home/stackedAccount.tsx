@@ -134,7 +134,7 @@ export default function StakedAccount() {
       earnings: "$40,000",
     },
     {
-      id: 1,
+      id: 2,
       name: "Staking Facilities",
       links: "https://stakingfacilities.com",
       fiatAmount: "$15,000",
