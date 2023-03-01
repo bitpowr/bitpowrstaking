@@ -69,45 +69,37 @@ export default function Header({ breadcrumbs, title, account }: AppProps) {
       <div className="w-full flex justify-end items-center">
         <div className="relative  pl-3 inline-block text-left">
           <div>
-            <button
-              onClick={() => {
-                setShowAddressPopup(!setShowAddressPopup);
-              }}
-              type="button"
-              className="px-4 py-1 inline-flex rounded-xl items-center text-9xl w-full justify-center rounded-md border border-gray-300 bg-white text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100"
-              id="menu-button"
-              aria-expanded="true"
-              aria-haspopup="true"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="icon w-7 h-auto mr-2 icon-tabler icon-tabler-folder-minus"
-                width={44}
-                height={44}
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="#90A0C2"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+            {account &&
+              <button
+                onClick={() => {
+                  setShowAddressPopup(!setShowAddressPopup);
+                }}
+                type="button"
+                className="px-4 py-1 inline-flex rounded-xl items-center text-9xl w-full justify-center rounded-md border border-gray-300 bg-white text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100"
+                id="menu-button"
+                aria-expanded="true"
+                aria-haspopup="true"
               >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" />
-                <line x1={9} y1={13} x2={15} y2={13} />
-              </svg>
-              {account?.toBase58()}
-            </button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="icon w-7 h-auto mr-2 icon-tabler icon-tabler-folder-minus"
+                  width={44}
+                  height={44}
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="#90A0C2"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" />
+                  <line x1={9} y1={13} x2={15} y2={13} />
+                </svg>
+                {account?.toBase58()}
+              </button>
+            }
           </div>
-          {/*
-    Dropdown menu, show/hide based on menu state.
-
-    Entering: "transition ease-out duration-100"
-From: "transform opacity-0 scale-95"
-To: "transform opacity-100 scale-100"
-    Leaving: "transition ease-in duration-75"
-From: "transform opacity-100 scale-100"
-To: "transform opacity-0 scale-95"
-  */}
           <div
             className={`absolute mt-3 ${showAddressPopup
               ? "transform opacity-100 scale-100"
