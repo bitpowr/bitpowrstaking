@@ -14,17 +14,34 @@ import BalanceCard from "common/components/card/balanceCard";
 import Modal from "common/components/modal";
 import Typography from "common/components/typography";
 import TransactionHistory from "widgets/home/transactionHistory";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import StakedAccount from "widgets/home/stackedAccount";
+import { getAccountBalance } from "@/services/solana";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   // const { publicKey, signMessage } = useWallet();
 
-  // useEffect(() => {
-  //   console.log("100" - 4, "jsjsj");
-  // }, []);
+  const { publicKey, wallet, disconnect, connected } = useWallet();
+
+  const [balance, setBalance] = useState(0)
+
+
+  useEffect(() => {
+    async function loadBalance() {
+      if (connected && publicKey) {
+        const b = await getAccountBalance(publicKey, "devnet")
+        setBalance(b)
+        
+      }
+    }
+    loadBalance()
+
+  }, [connected]);
+
+  console.log(balance)
+
   const tabData = [
     {
       header: "Staked Accounts",
