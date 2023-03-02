@@ -1,0 +1,125 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum NETWORK {
+  DEVNET
+  TESTNET
+  MAINNET
+}
+
+model Collection {
+
+  id  Int    @id @default(autoincrement())
+  uid String @unique @default(uuid())
+
+  image_url String?
+  
+  name String?
+
+  created_by String
+
+  status String @default("draft") // published
+
+  active Boolean @default(false)
+
+  network NETWORK
+
+  created_at DateTime @default(now())
+
+  updated_at DateTime @updatedAt
+
+  @@map("collections")
+
+  CollectionUpvote CollectionUpvote[]
+  CollectionValidator CollectionValidator[]
+}
+
+
+
+model CollectionUpvote {
+
+  id  Int    @id @default(autoincrement())
+  uid String @unique @default(uuid())
+
+  upvote Boolean @default(true)
+
+  account String
+
+  network NETWORK
+
+  collection Collection? @relation(fields: [collection_id], references: [uid])
+  collection_id String?
+
+  created_at DateTime @default(now())
+
+  updated_at DateTime @updatedAt
+
+  @@map("collection_upvotes")
+}
+
+
+model CollectionValidator {
+
+  id  Int    @id @default(autoincrement())
+  uid String @unique @default(uuid())
+
+  validator String
+
+  network NETWORK
+
+  percentage Decimal
+
+  collection Collection? @relation(fields: [collection_id], references: [uid])
+  collection_id String?
+
+  created_at DateTime @default(now())
+
+  updated_at DateTime @updatedAt
+
+  @@map("collection_validators")
+}
+
+
+model Validator {
+
+  id  Int    @id @default(autoincrement())
+  uid String @unique @default(uuid())
+
+  account String
+
+  name String
+
+  details String
+
+  score Int
+
+  apy Decimal @default(0.0)
+
+  commission String
+
+  active_stake Int @default(0)
+
+  avatar_url String?
+
+  network NETWORK
+
+  raw_data Json?
+
+  created_at DateTime @default(now())
+
+  updated_at DateTime @updatedAt
+
+  account_network String @unique
+
+  @@map("validators")
+}
+
