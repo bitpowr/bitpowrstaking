@@ -1,10 +1,10 @@
-import Button from "common/components/button";
-import Card from "common/components/card";
-import { Upvotes } from "common/components/icons";
-import TextField from "common/components/input";
-import Score from "common/components/score";
-import Table from "common/components/table";
-import Typography from "common/components/typography";
+import Button from "@/common/components/button";
+import Card from "@/common/components/card";
+import { Upvotes } from "@/common/components/icons";
+import TextField from "@/common/components/input";
+import Score from "@/common/components/score";
+import Table from "@/common/components/table";
+import Typography from "@/common/components/typography";
 import Link from "next/link";
 import React, { useState } from "react";
 import DataTable, { Selector, TableColumn } from "react-data-table-component";

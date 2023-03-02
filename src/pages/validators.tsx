@@ -1,8 +1,8 @@
 import { Inter } from "next/font/google";
-import AppLayout from "common/layouts";
-import Card from "common/components/card";
-import Button from "common/components/button";
-import Typography from "common/components/typography";
+import AppLayout from "@/common/layouts";
+import Card from "@/common/components/card";
+import Button from "@/common/components/button";
+import Typography from "@/common/components/typography";
 import ValidatorsTable from "widgets/validators";
 
 const inter = Inter({ subsets: ["latin"] });

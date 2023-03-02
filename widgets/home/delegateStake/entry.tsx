@@ -1,9 +1,9 @@
-import Banner from "common/components/banner";
-import Button from "common/components/button";
-import { DeleteIcon } from "common/components/icons";
-import TextField from "common/components/input";
-import Modal from "common/components/modal";
-import Typography from "common/components/typography";
+import Banner from "@/common/components/banner";
+import Button from "@/common/components/button";
+import { DeleteIcon } from "@/common/components/icons";
+import TextField from "@/common/components/input";
+import Modal from "@/common/components/modal";
+import Typography from "@/common/components/typography";
 import React, { MouseEventHandler } from "react";
 
 type componentProps = {

@@ -1,7 +1,7 @@
-import Button from "common/components/button";
-import Card from "common/components/card";
-import Table from "common/components/table";
-import Typography from "common/components/typography";
+import Button from "@/common/components/button";
+import Card from "@/common/components/card";
+import Table from "@/common/components/table";
+import Typography from "@/common/components/typography";
 import React from "react";
 import DataTable, { TableColumn, Selector } from "react-data-table-component";
 export default function TopValidators() {

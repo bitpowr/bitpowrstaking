@@ -1,9 +1,9 @@
-import Button from "common/components/button";
-import Card from "common/components/card";
-import TextField from "common/components/input";
-import Score from "common/components/score";
-import Table from "common/components/table";
-import Typography from "common/components/typography";
+import Button from "@/common/components/button";
+import Card from "@/common/components/card";
+import TextField from "@/common/components/input";
+import Score from "@/common/components/score";
+import Table from "@/common/components/table";
+import Typography from "@/common/components/typography";
 import React, { useState } from "react";
 import DataTable, { TableColumn, Selector } from "react-data-table-component";
 import DelegateStake from "widgets/home/delegateStake";

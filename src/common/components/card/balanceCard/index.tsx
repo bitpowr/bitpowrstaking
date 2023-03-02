@@ -1,4 +1,4 @@
-import Typography from "common/components/typography";
+import Typography from "@/common/components/typography";
 import React from "react";
 import coin1 from "../../../../public/coin-1.png";
 

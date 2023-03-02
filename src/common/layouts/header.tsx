@@ -1,37 +1,36 @@
 import { useWallet } from "@solana/wallet-adapter-react";
-import Button from "common/components/button";
-import Typography from "common/components/typography";
+import Button from "@/common/components/button";
+import Typography from "@/common/components/typography";
 
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
 type AppProps = {
   title: string;
   breadcrumbs: string;
-  account?: any
+  account?: any;
 };
 
 const WalletDisconnectButtonDynamic = dynamic(
-  async () => (await import('@solana/wallet-adapter-react-ui')).WalletDisconnectButton,
+  async () =>
+    (await import("@solana/wallet-adapter-react-ui")).WalletDisconnectButton,
   { ssr: false }
 );
 
 const WalletMultiButtonDynamic = dynamic(
-  async () => (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
+  async () =>
+    (await import("@solana/wallet-adapter-react-ui")).WalletMultiButton,
   { ssr: false }
 );
 
 export default function Header({ breadcrumbs, title, account }: AppProps) {
-
   const [showOptionPopup, setShowOptionPopup] = useState(false);
   const [showAddressPopup, setShowAddressPopup] = useState(true);
   const [delegateStake, setDelegateState] = useState(false);
   const [showOptionToSwitchNetwork, setShowOptionToSwitchNetwork] =
     useState(true);
   const popupRef = useRef("");
-
-
 
   const handleClosePopup = (e: any) => {
     console.log(e.target);
@@ -69,7 +68,7 @@ export default function Header({ breadcrumbs, title, account }: AppProps) {
       <div className="w-full flex justify-end items-center">
         <div className="relative  pl-3 inline-block text-left">
           <div>
-            {account &&
+            {account && (
               <button
                 onClick={() => {
                   setShowAddressPopup(!setShowAddressPopup);
@@ -98,7 +97,7 @@ export default function Header({ breadcrumbs, title, account }: AppProps) {
                 </svg>
                 {account?.toBase58()}
               </button>
-            }
+            )}
           </div>
         </div>
 

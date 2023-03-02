@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from "react";
-import { ReactChildrenPropsType } from "../../../types/global";
+import { ReactChildrenPropsType } from "../../../../types/global";
 
 type ComponentProp = {
   leftComponent?: React.ReactNode;

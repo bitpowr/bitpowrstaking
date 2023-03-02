@@ -1,7 +1,7 @@
-import Button from "common/components/button";
-import { ArrowLeft } from "common/components/icons";
-import TextField from "common/components/input";
-import Typography from "common/components/typography";
+import Button from "@/common/components/button";
+import { ArrowLeft } from "@/common/components/icons";
+import TextField from "@/common/components/input";
+import Typography from "@/common/components/typography";
 import React, { MouseEventHandler } from "react";
 
 type componentProp = {

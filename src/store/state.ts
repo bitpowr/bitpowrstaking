@@ -5,3 +5,17 @@ export const initialState = {
     prices: null,
     rates: null,
 };
+
+
+export const collectionState = {
+    mostRated: {
+        loading: true,
+        data: null,
+        error: false,
+    },
+    collections: {
+        loading: true,
+        data: null,
+        error: false,
+    }
+}

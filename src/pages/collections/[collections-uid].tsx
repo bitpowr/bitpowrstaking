@@ -1,6 +1,6 @@
-import Banner from "common/components/banner";
-import BalanceCard from "common/components/card/balanceCard";
-import AppLayout from "common/layouts";
+import Banner from "@/common/components/banner";
+import BalanceCard from "@/common/components/card/balanceCard";
+import AppLayout from "@/common/layouts";
 import React from "react";
 import ValidatorsTable from "widgets/validators";
 
