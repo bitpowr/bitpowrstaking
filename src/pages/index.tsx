@@ -20,21 +20,22 @@ import { getAccountBalance } from "@/services/solana";
 import { FingerPrint } from "@/common/components/icons";
 import WalletMultiButtonDynamic from "@/common/layouts/walletMultiButtonDynamic";
 import { useValidator } from "@/contexts/ValidatorsProviderContext";
+import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  // const { publicKey, signMessage } = useWallet();
-
-  const { getValidators } = useValidator();
-
-  useEffect(() => {
-    getValidators();
-  }, []);
+  const { getValidators, topValidators } = useValidator();
 
   const { publicKey, wallet, disconnect, connected } = useWallet();
 
+  const router = useRouter();
+
   const [balance, setBalance] = useState(0);
+
+  useEffect(() => {
+    router.isReady && getValidators();
+  }, [connected, router]);
 
   useEffect(() => {
     async function loadBalance() {
@@ -51,14 +52,11 @@ export default function Home() {
   const tabData = [
     {
       header: "Staked Accounts",
-      component: useMemo(() => <StakedAccount connected={connected} />, []),
+      component: useMemo(() => <StakedAccount />, []),
     },
     {
       header: "Transaction History",
-      component: useMemo(
-        () => <TransactionHistory connected={connected} />,
-        []
-      ),
+      component: useMemo(() => <TransactionHistory />, []),
     },
   ];
 
@@ -140,7 +138,11 @@ export default function Home() {
         <BalanceCard />
         <div className="lg:grid lg:grid-cols-2 w-full lg:gap-10 mt-[40px]">
           <MostRatedCollections />
-          <TopValidators connected={connected} />
+          <TopValidators
+            loading={topValidators.loading}
+            data={topValidators.data}
+            connected={connected}
+          />
         </div>
 
         <div className="mt-[36px]">

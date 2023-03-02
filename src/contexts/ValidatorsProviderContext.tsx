@@ -28,10 +28,19 @@ export default function ValidatorsProvider({
           validatorDispatch({
             type: validatorsActions.SET_VALIDATORS_LOADING,
           });
-          const response = await agent.get("/validators");
+          const response = await agent.get("/api/validators");
+
+          validatorDispatch({
+            type: validatorsActions.SET_VALIDATORS,
+            payload: response?.data?.data,
+          });
+
+          validatorDispatch({
+            type: validatorsActions.SET_TOP_VALIDATORS,
+            payload: response?.data?.data.splice(0, 5),
+          });
           console.log(response?.data);
         } catch (error) {
-          console.log(error);
           validatorDispatch({
             type: validatorsActions.STOP_VALIDATORS_LOADING,
           });

@@ -13,13 +13,9 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Collections() {
   // const { publicKey, signMessage } = useWallet();
 
-  const { collections, getCollections } = useCollection();
+  // const { collections } = useCollection();
 
-  console.log(getCollections, "getCollections");
-
-  useEffect(() => {
-    getCollections();
-  }, []);
+  // console.log(getCollections, "getCollections");
 
   return (
     <>
@@ -90,10 +86,7 @@ export default function Collections() {
         </div>
 
         <div className="mt-[40px]">
-          <AllCollectionsTable
-            data={collections.data}
-            loading={collections.loading}
-          />
+          <AllCollectionsTable data={[]} loading={false} />
         </div>
 
         {/* <Modal visible={true}></Modal> */}

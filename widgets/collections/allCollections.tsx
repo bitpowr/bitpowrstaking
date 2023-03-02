@@ -8,7 +8,7 @@ import Typography from "@/common/components/typography";
 import Link from "next/link";
 import React, { useState } from "react";
 import DataTable, { Selector, TableColumn } from "react-data-table-component";
-import DelegateStake from "widgets/home/delegateStake";
+import DelegateStake from "widgets/common/staking/delegateStake";
 
 type componentProps = {
   loading: boolean;

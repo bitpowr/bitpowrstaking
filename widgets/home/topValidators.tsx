@@ -1,43 +1,58 @@
+import Avatar from "@/common/components/avatar";
 import Button from "@/common/components/button";
 import Card from "@/common/components/card";
 import Table from "@/common/components/table";
 import Typography from "@/common/components/typography";
-import { boolean } from "joi";
-import React from "react";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import DataTable, { TableColumn, Selector } from "react-data-table-component";
+import DelegateStake from "widgets/common/staking/delegateStake";
 
 type componentProps = {
+  loading: boolean;
+  data: [];
   connected: boolean;
 };
-export default function TopValidators({ connected }: componentProps) {
+export default function TopValidators({
+  loading,
+  data,
+  connected,
+}: componentProps) {
   interface DataRow {
     name: string;
     validators: string;
     fiatAmount: string;
-    cryptoAmount: string;
+    active_stake: string;
+    total_score: string;
     account_id: string;
     id: number;
-    percent: string;
-    link: string;
+    avatar_url: string;
+    status: "active" | "pending";
+    created_at: string;
+    url: string;
+    commission: string;
     earnings: string;
     // selector: (d: any) => React.ReactElement;
   }
 
+  const [delegateStake, setDelegateState] = useState<DataRow | null>(null);
+
   const columns: TableColumn<DataRow>[] = [
     {
-      name: "Validator",
+      name: "Validator Name",
+      minWidth: "250px",
       cell: (row) => (
         <>
-          <div className="flex">
-            <img
-              className="w-10 h-10 rounded-full float-right"
-              src="https://images.pexels.com/photos/14811468/pexels-photo-14811468.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load"
-              alt="Rounded avatar"
-            />
+          <div className="flex overflow-hidden">
+            <Avatar name={row?.name} avatar_url={row?.avatar_url} />
             <div className="ml-3">
-              <Typography color="text-dark" label={row.name} variant="body2" />
+              <Typography color="text-dark" label={row?.name} variant="body2" />
               <div className="mt-1">
-                <Typography label={row.link} variant="body1" />
+                <Typography
+                  className="w-[100px] overflow-hidden text-ellipsis whitespace-nowrap"
+                  label={row?.url}
+                  variant="body1"
+                />
               </div>
             </div>
           </div>
@@ -45,28 +60,23 @@ export default function TopValidators({ connected }: componentProps) {
       ),
     },
     {
-      name: "Fee",
+      name: "Commission",
       cell: (row) => (
         <div className="">
-          <div>
-            <Typography
-              color="text-dark"
-              label={row?.percent}
-              variant="body2"
-            />
-          </div>
-          <div className="mt-1">
-            <Typography label="350 Delegated" variant="body1" />
-          </div>
+          <Typography
+            color="text-dark"
+            label={row?.commission}
+            variant="body2"
+          />
         </div>
       ),
     },
+
     {
       name: "Action",
       cell: (row) => (
         <Button
-          disabled={!connected}
-          onClick={() => {}}
+          onClick={() => setDelegateState(row)}
           size="semi-big"
           outline
           label="Delegate"
@@ -75,43 +85,28 @@ export default function TopValidators({ connected }: componentProps) {
     },
   ];
 
-  const data = [
-    {
-      id: 1,
-      name: "P2P.ORG - P2P",
-      link: "https://p2p.org",
-      percent: "5%",
-    },
-    {
-      id: 2,
-      name: "Staking Facilit...",
-      link: "https://p2p.org",
-      percent: "7%",
-    },
-    {
-      id: 3,
-      name: "P2P.ORG - P2P",
-      link: "https://p2p.org",
-      percent: "5%",
-    },
-    {
-      id: 4,
-      name: "Staking Facilit...",
-      link: "https://p2p.org",
-      percent: "7%",
-    },
-  ];
+  const rightComponent = () => {
+    return (
+      <>
+        <Link href={"/validators"}>
+          <Button outline size="semi-big" label="View All" onClick={() => {}} />
+        </Link>
+      </>
+    );
+  };
 
   return (
     <Card>
       <Table
-        rightComponent={
-          <Button onClick={() => {}} size="semi-big" outline label="View All" />
-        }
+        loading={loading}
+        rightComponent={rightComponent()}
         title="Top Validators"
         columns={columns}
-        data={data}
+        data={data ?? []}
       />
+      {delegateStake ? (
+        <DelegateStake onClose={() => setDelegateState(null)} visible={true} />
+      ) : null}
     </Card>
   );
 }

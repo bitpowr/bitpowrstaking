@@ -75,14 +75,14 @@ export default function TransactionHistory() {
         </div>
       ),
     },
-    {
-      name: "Status",
-      cell: (row) => (
-        <div>
-          <Status status={row?.status} />
-        </div>
-      ),
-    },
+    // {
+    //   name: "Status",
+    //   cell: (row) => (
+    //     <div>
+    //       <Status status={row?.status} />
+    //     </div>
+    //   ),
+    // },
     {
       name: "Account ID",
       cell: (row) => (

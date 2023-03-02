@@ -3,19 +3,22 @@ import Card from "@/common/components/card";
 import Status from "@/common/components/status";
 import Table from "@/common/components/table";
 import Typography from "@/common/components/typography";
-import React from "react";
+import React, { useState } from "react";
 import DataTable, { TableColumn, Selector } from "react-data-table-component";
+import UnDelegateStake from "widgets/common/staking/unDelegateStake";
+import DelegateStake from "../common/staking/delegateStake";
 
-type componentProps = {
-  connected: boolean;
-};
-export default function StakedAccount({ connected }: componentProps) {
+type componentProps = {};
+export default function StakedAccount({}: componentProps) {
+  const [showDelegate, setShowDelegate] = useState(false);
+  const [unDelegate, setShowUnDelegate] = useState(false);
   interface DataRow {
     name: string;
     validators: string;
     fiatAmount: string;
     cryptoAmount: string;
     account_id: string;
+    status: "pending" | "active";
     id: number;
     date: string;
     links: string;
@@ -79,6 +82,14 @@ export default function StakedAccount({ connected }: componentProps) {
       ),
     },
     {
+      name: "Status",
+      cell: (row) => (
+        <div>
+          <Status status={row?.status} />
+        </div>
+      ),
+    },
+    {
       name: "Account ID",
       cell: (row) => (
         <div className="flex items-center">
@@ -120,7 +131,12 @@ export default function StakedAccount({ connected }: componentProps) {
     {
       name: "Action",
       cell: (row) => (
-        <Button onClick={() => {}} size="semi-big" outline label="View" />
+        <Button
+          onClick={() => setShowUnDelegate(true)}
+          size="semi-big"
+          outline
+          label="Undelegate"
+        />
       ),
     },
   ];
@@ -155,12 +171,26 @@ export default function StakedAccount({ connected }: componentProps) {
     <Card>
       <Table
         rightComponent={
-          <Button onClick={() => ""} size="semi-big" outline label="View All" />
+          <Button
+            onClick={() => setShowDelegate(true)}
+            label="Create New Stake"
+          />
         }
-        title="Transaction History"
+        title="Stacked Accounts"
         columns={columns}
         data={data}
       />
+
+      {showDelegate ? (
+        <DelegateStake visible={true} onClose={() => setShowDelegate(false)} />
+      ) : null}
+
+      {unDelegate ? (
+        <UnDelegateStake
+          onClose={() => setShowUnDelegate(false)}
+          visible={true}
+        />
+      ) : null}
     </Card>
   );
 }

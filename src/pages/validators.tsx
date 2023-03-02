@@ -4,12 +4,11 @@ import Card from "@/common/components/card";
 import Button from "@/common/components/button";
 import Typography from "@/common/components/typography";
 import ValidatorsTable from "widgets/validators";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  // const { publicKey, signMessage } = useWallet();
-
   return (
     <>
       <AppLayout headerTitle="Validators">
