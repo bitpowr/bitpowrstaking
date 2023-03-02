@@ -50,6 +50,6 @@ export default function CollectionsProvider({
   );
 }
 
-export const useCollection = (): collectionPropType => {
+export const useCollection = (): any => {
   return useContext(CollectionContext);
 };

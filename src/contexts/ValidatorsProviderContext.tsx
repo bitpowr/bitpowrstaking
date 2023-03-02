@@ -60,6 +60,6 @@ export default function ValidatorsProvider({
   );
 }
 
-export const useValidator = (): validatorPropType => {
+export const useValidator = (): any => {
   return useContext(ValidatorContext);
 };
