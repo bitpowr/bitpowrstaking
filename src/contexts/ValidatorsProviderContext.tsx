@@ -37,7 +37,7 @@ export default function ValidatorsProvider({
 
           validatorDispatch({
             type: validatorsActions.SET_TOP_VALIDATORS,
-            payload: response?.data?.data.splice(0, 5),
+            payload: response?.data?.data.slice(5, 10),
           });
           console.log(response?.data);
         } catch (error) {

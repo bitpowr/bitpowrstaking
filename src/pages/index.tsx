@@ -10,7 +10,9 @@ import MostRatedCollections from "widgets/home/mostRatedCollections";
 import Card from "@/common/components/card";
 import Tab from "@/common/components/tab";
 import Button from "@/common/components/button";
-import BalanceCard from "@/common/components/card/balanceCard";
+import BalanceCard, {
+  balanceCardDataProp,
+} from "@/common/components/card/balanceCard";
 import Modal from "@/common/components/modal";
 import Typography from "@/common/components/typography";
 import TransactionHistory from "widgets/home/transactionHistory";
@@ -33,9 +35,36 @@ export default function Home() {
 
   const [balance, setBalance] = useState(0);
 
+  const data: balanceCardDataProp[] = [
+    {
+      title: "Available balance",
+      info: "Available balance",
+      fiatBalance: "$7,000",
+      cryptoBalance: balance.toLocaleString() + " " + "Sol",
+      theme: "primary",
+      img: "bg-balance-coin-one",
+    },
+    {
+      title: "Available balance",
+      info: "Available balance",
+      fiatBalance: "$7,000",
+      cryptoBalance: "10,000 Sol",
+      theme: "secondary",
+      img: "bg-balance-coin-two",
+    },
+    {
+      title: "Available balance",
+      info: "Available balance",
+      fiatBalance: "$7,000",
+      cryptoBalance: "10,000 Sol",
+      theme: "secondary",
+      img: "bg-balance-coin-three",
+    },
+  ];
+
   useEffect(() => {
     router.isReady && getValidators();
-  }, [connected, router]);
+  }, [router]);
 
   useEffect(() => {
     async function loadBalance() {
@@ -47,7 +76,7 @@ export default function Home() {
     loadBalance();
   }, [connected]);
 
-  console.log(balance);
+  console.log(balance, "balancebalancebalance");
 
   const tabData = [
     {
@@ -135,7 +164,7 @@ export default function Home() {
           </div>
         </div>
 
-        <BalanceCard />
+        <BalanceCard data={data} />
         <div className="lg:grid lg:grid-cols-2 w-full lg:gap-10 mt-[40px]">
           <MostRatedCollections />
           <TopValidators

@@ -2,7 +2,7 @@ import Button from "@/common/components/button";
 import Card from "@/common/components/card";
 import Table from "@/common/components/table";
 import Typography from "@/common/components/typography";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DataTable, { TableColumn, Selector } from "react-data-table-component";
 export default function TopValidators() {
   interface DataRow {
@@ -17,6 +17,7 @@ export default function TopValidators() {
     // selector: (d: any) => React.ReactElement;
   }
 
+  const [loading, setLoading] = useState(true);
   const columns: TableColumn<DataRow>[] = [
     {
       name: "Collection",
@@ -94,15 +95,22 @@ export default function TopValidators() {
     },
   ];
 
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 4000);
+  }, []);
+
   return (
     <Card>
       <Table
         rightComponent={
           <Button onClick={() => ""} size="semi-big" outline label="View All" />
         }
+        loading={loading}
         title="Most Rated Collections"
-        columns={columns}
-        data={data}
+        columns={columns ?? []}
+        data={data ?? []}
       />
     </Card>
   );

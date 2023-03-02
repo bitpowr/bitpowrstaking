@@ -2,41 +2,18 @@ import Typography from "@/common/components/typography";
 import React from "react";
 import coin1 from "../../../../public/coin-1.png";
 
-export default function BalanceCard() {
-  const data: {
-    title: string;
-    info: string;
-    img: string;
-    fiatBalance: string;
-    cryptoBalance: string;
-    theme: "primary" | "secondary";
-  }[] = [
-    {
-      title: "Available balance",
-      info: "Available balance",
-      fiatBalance: "$7,000",
-      cryptoBalance: "10,000 Sol",
-      theme: "primary",
-      img: "bg-balance-coin-one",
-    },
-    {
-      title: "Available balance",
-      info: "Available balance",
-      fiatBalance: "$7,000",
-      cryptoBalance: "10,000 Sol",
-      theme: "secondary",
-      img: "bg-balance-coin-two",
-    },
-    {
-      title: "Available balance",
-      info: "Available balance",
-      fiatBalance: "$7,000",
-      cryptoBalance: "10,000 Sol",
-      theme: "secondary",
-      img: "bg-balance-coin-three",
-    },
-  ];
-
+export type balanceCardDataProp = {
+  title: string;
+  info: string;
+  fiatBalance: string;
+  cryptoBalance: string;
+  theme: "primary" | "secondary";
+  img: string;
+};
+type componentProps = {
+  data: balanceCardDataProp[];
+};
+export default function BalanceCard({ data }: componentProps) {
   return (
     <div className="grid md:grid-cols-3 gap-4">
       {data?.map((data, index) => {
