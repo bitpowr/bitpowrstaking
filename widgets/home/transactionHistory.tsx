@@ -1,8 +1,8 @@
-import Button from "common/components/button";
-import Card from "common/components/card";
-import Status from "common/components/status";
-import Table from "common/components/table";
-import Typography from "common/components/typography";
+import Button from "@/common/components/button";
+import Card from "@/common/components/card";
+import Status from "@/common/components/status";
+import Table from "@/common/components/table";
+import Typography from "@/common/components/typography";
 import React from "react";
 import DataTable, { TableColumn, Selector } from "react-data-table-component";
 export default function TransactionHistory() {
@@ -75,14 +75,14 @@ export default function TransactionHistory() {
         </div>
       ),
     },
-    {
-      name: "Status",
-      cell: (row) => (
-        <div>
-          <Status status={row?.status} />
-        </div>
-      ),
-    },
+    // {
+    //   name: "Status",
+    //   cell: (row) => (
+    //     <div>
+    //       <Status status={row?.status} />
+    //     </div>
+    //   ),
+    // },
     {
       name: "Account ID",
       cell: (row) => (

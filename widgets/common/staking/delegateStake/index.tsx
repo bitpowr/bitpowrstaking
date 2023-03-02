@@ -1,6 +1,6 @@
-import Modal from "common/components/modal";
+import Modal from "@/common/components/modal";
 import React, { useState } from "react";
-import CalculateEarning from "../calculateEarning";
+import CalculateEarning from "../../../home/calculateEarning";
 import DelegateStakeEntry from "./entry";
 import StakingSuccessful from "./success";
 

@@ -1,9 +1,9 @@
-import Typography from "common/components/typography";
-import { sidebarData } from "common/data/sidebar";
+import Typography from "@/common/components/typography";
+import { sidebarData } from "@/common/data/sidebar";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import profilePic from "../../public/logo.png";
+import profilePic from "../../../public/logo.png";
 
 export default function Sidebar() {
   const [active, setActive] = useState("");

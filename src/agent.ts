@@ -6,7 +6,9 @@ const agent = axios.create({
     headers: {
         "accept": "application/json",
         "content-type": "application/json",
-        "authorizer": "allow"
+        "authorizer": "allow",
+        "network": "mainnet",
+
     }
 });
 agent.interceptors.response.use(function (response: any) {

@@ -1,15 +1,21 @@
 import { Inter } from "next/font/google";
-import AppLayout from "common/layouts";
-import Card from "common/components/card";
-import Button from "common/components/button";
-import Typography from "common/components/typography";
+import AppLayout from "@/common/layouts";
+import Card from "@/common/components/card";
+import Button from "@/common/components/button";
+import Typography from "@/common/components/typography";
 import ValidatorsTable from "widgets/validators";
 import AllCollectionsTable from "widgets/collections/allCollections";
+import { useEffect } from "react";
+import { useCollection } from "@/contexts/CollectionsProviderContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Collections() {
   // const { publicKey, signMessage } = useWallet();
+
+  // const { collections } = useCollection();
+
+  // console.log(getCollections, "getCollections");
 
   return (
     <>
@@ -80,11 +86,10 @@ export default function Collections() {
         </div>
 
         <div className="mt-[40px]">
-          <AllCollectionsTable />
+          <AllCollectionsTable data={[]} loading={false} />
         </div>
 
         {/* <Modal visible={true}></Modal> */}
-        
       </AppLayout>
     </>
   );

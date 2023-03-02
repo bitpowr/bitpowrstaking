@@ -8,7 +8,7 @@ type componentProps = {
   ctaLink?: string;
   theme?: "warning";
   title?: string;
-  textLg?: string;
+  textLg?: boolean;
 };
 
 export default function Banner({
@@ -24,7 +24,7 @@ export default function Banner({
     warning: "bg-light-orange",
   };
 
-  const textSize = textLg ? "text-sm" : "text-md";
+  const textSize = textLg ? "text-md" : "text-sm";
 
   return (
     <div className={`flex items-center rounded-md p-3 ${bg[theme]}`}>
@@ -48,15 +48,16 @@ export default function Banner({
           </span>
         ) : null}
         {label ? (
-          <span className={`${textSize} text-light-color`}>{label}</span>
+          <span className={`${textSize} text-light-color`}>
+            {label}
+            <span
+              className={`${textSize} cursor-pointer text-orange text-light-color ml-1`}
+            >
+              {ctaLabel}
+            </span>
+          </span>
         ) : null}
         {children ? <>{children}</> : null}
-
-        <span
-          className={`${textSize} cursor-pointer text-orange text-light-color ml-1`}
-        >
-          {ctaLabel}
-        </span>
       </div>
     </div>
   );

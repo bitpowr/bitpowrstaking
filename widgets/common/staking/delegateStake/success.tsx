@@ -1,5 +1,5 @@
-import Button from "common/components/button";
-import Typography from "common/components/typography";
+import Button from "@/common/components/button";
+import Typography from "@/common/components/typography";
 import React from "react";
 
 export default function StakingSuccessful() {

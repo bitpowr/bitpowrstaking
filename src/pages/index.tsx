@@ -4,43 +4,79 @@ import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 
 import { useWallet } from "@solana/wallet-adapter-react";
-import AppLayout from "common/layouts";
+import AppLayout from "@/common/layouts";
 import TopValidators from "widgets/home/topValidators";
 import MostRatedCollections from "widgets/home/mostRatedCollections";
-import Card from "common/components/card";
-import Tab from "common/components/tab";
-import Button from "common/components/button";
-import BalanceCard from "common/components/card/balanceCard";
-import Modal from "common/components/modal";
-import Typography from "common/components/typography";
+import Card from "@/common/components/card";
+import Tab from "@/common/components/tab";
+import Button from "@/common/components/button";
+import BalanceCard, {
+  balanceCardDataProp,
+} from "@/common/components/card/balanceCard";
+import Modal from "@/common/components/modal";
+import Typography from "@/common/components/typography";
 import TransactionHistory from "widgets/home/transactionHistory";
 import { useEffect, useMemo, useState } from "react";
 import StakedAccount from "widgets/home/stackedAccount";
 import { getAccountBalance } from "@/services/solana";
+import { FingerPrint } from "@/common/components/icons";
+import WalletMultiButtonDynamic from "@/common/layouts/walletMultiButtonDynamic";
+import { useValidator } from "@/contexts/ValidatorsProviderContext";
+import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  // const { publicKey, signMessage } = useWallet();
+  const { getValidators, topValidators } = useValidator();
 
   const { publicKey, wallet, disconnect, connected } = useWallet();
 
-  const [balance, setBalance] = useState(0)
+  const router = useRouter();
 
+  const [balance, setBalance] = useState(0);
+
+  const data: balanceCardDataProp[] = [
+    {
+      title: "Available balance",
+      info: "Available balance",
+      fiatBalance: "$7,000",
+      cryptoBalance: balance.toLocaleString() + " " + "Sol",
+      theme: "primary",
+      img: "bg-balance-coin-one",
+    },
+    {
+      title: "Available balance",
+      info: "Available balance",
+      fiatBalance: "$7,000",
+      cryptoBalance: "10,000 Sol",
+      theme: "secondary",
+      img: "bg-balance-coin-two",
+    },
+    {
+      title: "Available balance",
+      info: "Available balance",
+      fiatBalance: "$7,000",
+      cryptoBalance: "10,000 Sol",
+      theme: "secondary",
+      img: "bg-balance-coin-three",
+    },
+  ];
+
+  useEffect(() => {
+    router.isReady && getValidators();
+  }, [router]);
 
   useEffect(() => {
     async function loadBalance() {
       if (connected && publicKey) {
-        const b = await getAccountBalance(publicKey, "devnet")
-        setBalance(b)
-        
+        const b = await getAccountBalance(publicKey, "devnet");
+        setBalance(b);
       }
     }
-    loadBalance()
-
+    loadBalance();
   }, [connected]);
 
-  console.log(balance)
+  console.log(balance, "balancebalancebalance");
 
   const tabData = [
     {
@@ -128,14 +164,41 @@ export default function Home() {
           </div>
         </div>
 
-        <BalanceCard />
+        <BalanceCard data={data} />
         <div className="lg:grid lg:grid-cols-2 w-full lg:gap-10 mt-[40px]">
           <MostRatedCollections />
-          <TopValidators />
+          <TopValidators
+            loading={topValidators.loading}
+            data={topValidators.data}
+            connected={connected}
+          />
         </div>
 
         <div className="mt-[36px]">
-          <Tab data={tabData} />
+          {connected ? (
+            <Tab data={tabData} />
+          ) : (
+            <Card className="">
+              <Typography variant="subtitle" label="Transaction History" />
+
+              <div className="flex items-center py-10 text-center w-100 justify-center">
+                <div>
+                  <FingerPrint
+                    style={{ width: "20%", height: "auto", margin: "auto" }}
+                  />
+
+                  <Typography
+                    className="mt-3"
+                    variant="body3"
+                    label="You may need to connect your wallet to view your transactions"
+                  />
+                  <div className="flex justify-center mt-5">
+                    <WalletMultiButtonDynamic />
+                  </div>
+                </div>
+              </div>
+            </Card>
+          )}
         </div>
 
         {/* <Modal visible={true}></Modal> */}
