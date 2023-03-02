@@ -1,1 +1,1 @@
-This a multi validator staking app
+This a multi validator staking application
