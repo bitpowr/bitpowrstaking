@@ -1,5 +1,5 @@
 import { collectionState } from "@/store/state";
-import { boolean } from "joi";
+import { any, boolean } from "joi";
 
 
 export type collectionPropType = {
@@ -24,7 +24,7 @@ type providerActionTypes =
 
 
 export function collectionsReducer(
-    states: typeof collectionState,
+    states: any,
     action: { type: providerActionTypes, payload: any }
 ) {
     switch (action.type) {

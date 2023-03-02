@@ -29,7 +29,7 @@ type providerActionTypes =
 
 
 export function validatorsReducer(
-    states: typeof validatorState,
+    states: any,
     action: { type: providerActionTypes, payload: any }
 ) {
     switch (action.type) {
