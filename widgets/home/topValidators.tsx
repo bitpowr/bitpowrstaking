@@ -2,9 +2,14 @@ import Button from "@/common/components/button";
 import Card from "@/common/components/card";
 import Table from "@/common/components/table";
 import Typography from "@/common/components/typography";
+import { boolean } from "joi";
 import React from "react";
 import DataTable, { TableColumn, Selector } from "react-data-table-component";
-export default function TopValidators() {
+
+type componentProps = {
+  connected: boolean;
+};
+export default function TopValidators({ connected }: componentProps) {
   interface DataRow {
     name: string;
     validators: string;
@@ -59,7 +64,13 @@ export default function TopValidators() {
     {
       name: "Action",
       cell: (row) => (
-        <Button onClick={() => {}} size="semi-big" outline label="Delegate" />
+        <Button
+          disabled={!connected}
+          onClick={() => {}}
+          size="semi-big"
+          outline
+          label="Delegate"
+        />
       ),
     },
   ];

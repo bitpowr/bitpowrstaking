@@ -9,7 +9,12 @@ import Link from "next/link";
 import React, { useState } from "react";
 import DataTable, { Selector, TableColumn } from "react-data-table-component";
 import DelegateStake from "widgets/home/delegateStake";
-export default function AllCollectionsTable() {
+
+type componentProps = {
+  loading: boolean;
+  data: [];
+};
+export default function AllCollectionsTable({ data, loading }: componentProps) {
   interface DataRow {
     name: string;
     validators: string;
@@ -103,33 +108,6 @@ export default function AllCollectionsTable() {
     },
   ];
 
-  const data = [
-    {
-      id: 1,
-      name: "Burundo Samm",
-      validators: 12,
-      average: "14%",
-      upvote: 122,
-      date: new Date(),
-    },
-    {
-      id: 1,
-      name: "Burundo Samm",
-      validators: 12,
-      average: "14%",
-      upvote: 122,
-      date: new Date(),
-    },
-    {
-      id: 1,
-      name: "Burundo Samm",
-      validators: 12,
-      average: "14%",
-      upvote: 122,
-      date: new Date(),
-    },
-  ];
-
   const rightComponent = () => {
     return (
       <>
@@ -141,10 +119,11 @@ export default function AllCollectionsTable() {
   return (
     <Card>
       <Table
+        loading={loading}
         rightComponent={rightComponent()}
         title="All Collections: 456"
         columns={columns}
-        data={data}
+        data={data ?? []}
       />
     </Card>
   );

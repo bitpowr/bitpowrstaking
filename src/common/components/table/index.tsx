@@ -28,10 +28,12 @@ export default function Table({
   title,
   selectableRows,
   rightComponent,
+  loading,
   leftComponent,
 }: {
   columns: any[];
   data: any[];
+  loading?: boolean;
   title?: string;
   leftComponent?: React.ReactElement;
   selectableRows?: boolean;
@@ -75,6 +77,7 @@ export default function Table({
         sortIcon="ksk"
         onSelectedRowsChange={handleRowSelected}
         columns={columns}
+        progressPending={loading}
         selectableRows={selectableRows}
         customStyles={customStyles}
         data={data}

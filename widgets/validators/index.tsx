@@ -48,7 +48,7 @@ export default function ValidatorsTable() {
       ),
     },
     {
-      name: "Fee",
+      name: "APY",
       cell: (row) => (
         <div className="">
           <Typography color="text-dark" label={row?.fee} variant="body2" />
@@ -56,7 +56,7 @@ export default function ValidatorsTable() {
       ),
     },
     {
-      name: "Stake",
+      name: "Active Stake",
       cell: (row) => (
         <div className="">
           <div>
@@ -65,6 +65,14 @@ export default function ValidatorsTable() {
           <div className="mt-1">
             <Typography label={row.fiatAmount} variant="body1" />
           </div>
+        </div>
+      ),
+    },
+    {
+      name: "Commission",
+      cell: (row) => (
+        <div className="">
+          <Typography color="text-dark" label={row?.fee} variant="body2" />
         </div>
       ),
     },

@@ -8,6 +8,7 @@ type ComponentProp = {
   size?: "default" | "semi-big";
   outline?: boolean;
   onClick: MouseEventHandler<HTMLButtonElement>;
+  disabled?: boolean;
   children?: ReactChildrenPropsType;
 };
 
@@ -17,6 +18,7 @@ export default function Button({
   outline,
   onClick,
   theme = "primary",
+  disabled,
   size = "default",
   children,
 }: ComponentProp) {
@@ -44,7 +46,9 @@ export default function Button({
     <button
       onClick={onClick}
       style={{ borderWidth: "1px", ...heightStyle[size] }}
-      className={`flex items-center ${paddingStyle[size]}    rounded-3xl ${themeStyle[theme]} `}
+      className={`flex items-center ${paddingStyle[size]}  ${
+        disabled ? "opacity-50" : ""
+      }   rounded-3xl ${themeStyle[theme]} `}
     >
       <div>{leftComponent}</div>
       <div className="text-base ">{label || <>{children}</>}</div>

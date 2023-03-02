@@ -1,48 +1,53 @@
-import { collectionState } from "@/store/state";
+
+
+
+import { collectionState, validatorState } from "@/store/state";
 import { boolean } from "joi";
 
 
-export type collectionPropType = {
-    mostRated: {
+export type validatorPropType = {
+    topValidators: {
         loading: boolean,
         data: any,
         error: boolean,
     },
-    collections: {
+    validators: {
         loading: boolean,
         data: any,
         error: boolean,
     }
 }
 
+
+
 type providerActionTypes =
-    "SET_MOST_RATED_COLLECTIONS" |
-    "SET_COLLECTIONS" |
-    "GET_COLLECTIONS_LOADING" |
-    "STOP_COLLECTIONS_LOADING"
+    "SET_TOP_VALIDATORS" |
+    "SET_VALIDATORS" |
+    "GET_VALIDATORS_LOADING" |
+    "STOP_VALIDATORS_LOADING"
 
 
 
-export function collectionsReducer(
-    states: typeof collectionState,
+export function validatorsReducer(
+    states: typeof validatorState,
     action: { type: providerActionTypes, payload: any }
 ) {
     switch (action.type) {
-        case "SET_MOST_RATED_COLLECTIONS":
+        case "SET_TOP_VALIDATORS":
             return states;
-        case "GET_COLLECTIONS_LOADING":
+        case "SET_TOP_VALIDATORS":
             return {
                 ...states,
-                collections: {
-                    ...states.collections,
+                validators: {
+                    ...states.validators,
                     loading: true
                 }
             };
-        case "STOP_COLLECTIONS_LOADING":
+        case "STOP_VALIDATORS_LOADING":
             return {
                 ...states,
-                collections: {
-                    ...states.collections,
+                validators: {
+                    ...states.validators,
                     loading: false
                 }
             };

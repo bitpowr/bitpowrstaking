@@ -5,7 +5,11 @@ import Table from "@/common/components/table";
 import Typography from "@/common/components/typography";
 import React from "react";
 import DataTable, { TableColumn, Selector } from "react-data-table-component";
-export default function StakedAccount() {
+
+type componentProps = {
+  connected: boolean;
+};
+export default function StakedAccount({ connected }: componentProps) {
   interface DataRow {
     name: string;
     validators: string;

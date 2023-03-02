@@ -17,39 +17,48 @@ import TransactionHistory from "widgets/home/transactionHistory";
 import { useEffect, useMemo, useState } from "react";
 import StakedAccount from "widgets/home/stackedAccount";
 import { getAccountBalance } from "@/services/solana";
+import { FingerPrint } from "@/common/components/icons";
+import WalletMultiButtonDynamic from "@/common/layouts/walletMultiButtonDynamic";
+import { useValidator } from "@/contexts/ValidatorsProviderContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   // const { publicKey, signMessage } = useWallet();
 
+  const { getValidators } = useValidator();
+
+  useEffect(() => {
+    getValidators();
+  }, []);
+
   const { publicKey, wallet, disconnect, connected } = useWallet();
 
-  const [balance, setBalance] = useState(0)
-
+  const [balance, setBalance] = useState(0);
 
   useEffect(() => {
     async function loadBalance() {
       if (connected && publicKey) {
-        const b = await getAccountBalance(publicKey, "devnet")
-        setBalance(b)
-        
+        const b = await getAccountBalance(publicKey, "devnet");
+        setBalance(b);
       }
     }
-    loadBalance()
-
+    loadBalance();
   }, [connected]);
 
-  console.log(balance)
+  console.log(balance);
 
   const tabData = [
     {
       header: "Staked Accounts",
-      component: useMemo(() => <StakedAccount />, []),
+      component: useMemo(() => <StakedAccount connected={connected} />, []),
     },
     {
       header: "Transaction History",
-      component: useMemo(() => <TransactionHistory />, []),
+      component: useMemo(
+        () => <TransactionHistory connected={connected} />,
+        []
+      ),
     },
   ];
 
@@ -131,11 +140,34 @@ export default function Home() {
         <BalanceCard />
         <div className="lg:grid lg:grid-cols-2 w-full lg:gap-10 mt-[40px]">
           <MostRatedCollections />
-          <TopValidators />
+          <TopValidators connected={connected} />
         </div>
 
         <div className="mt-[36px]">
-          <Tab data={tabData} />
+          {connected ? (
+            <Tab data={tabData} />
+          ) : (
+            <Card className="">
+              <Typography variant="subtitle" label="Transaction History" />
+
+              <div className="flex items-center py-10 text-center w-100 justify-center">
+                <div>
+                  <FingerPrint
+                    style={{ width: "20%", height: "auto", margin: "auto" }}
+                  />
+
+                  <Typography
+                    className="mt-3"
+                    variant="body3"
+                    label="You may need to connect your wallet to view your transactions"
+                  />
+                  <div className="flex justify-center mt-5">
+                    <WalletMultiButtonDynamic />
+                  </div>
+                </div>
+              </div>
+            </Card>
+          )}
         </div>
 
         {/* <Modal visible={true}></Modal> */}

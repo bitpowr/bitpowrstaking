@@ -1,10 +1,10 @@
 import { useWallet } from "@solana/wallet-adapter-react";
 import Button from "@/common/components/button";
 import Typography from "@/common/components/typography";
-
 import dynamic from "next/dynamic";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import WalletMultiButtonDynamic from "./walletMultiButtonDynamic";
 
 type AppProps = {
   title: string;
@@ -15,12 +15,6 @@ type AppProps = {
 const WalletDisconnectButtonDynamic = dynamic(
   async () =>
     (await import("@solana/wallet-adapter-react-ui")).WalletDisconnectButton,
-  { ssr: false }
-);
-
-const WalletMultiButtonDynamic = dynamic(
-  async () =>
-    (await import("@solana/wallet-adapter-react-ui")).WalletMultiButton,
   { ssr: false }
 );
 

@@ -5,12 +5,14 @@ import {
   useEffect,
   useContext,
 } from "react";
-import { initialState, collectionState } from "./state";
+import { initialState, collectionState, validatorState } from "./state";
 
 import type { FC, ReactNode } from "react";
 import storeReducer from "@/reducers/storeReducer";
 import CollectionsProvider from "@/contexts/CollectionsProviderContext";
 import { collectionsReducer } from "@/reducers/collectionsReducer";
+import { validatorsReducer } from "@/reducers/validatorsReducer";
+import ValidatorsProvider from "@/contexts/ValidatorsProviderContext";
 
 export const store = createContext(initialState);
 const { Provider } = store;
@@ -21,8 +23,10 @@ const StoreProvider: FC<{ children: ReactNode }> = ({ children }) => {
     collectionsReducer,
     collectionState
   );
-
-  collectionState;
+  const [validators, validatorDispatch] = useReducer(
+    validatorsReducer,
+    validatorState
+  );
 
   return (
     <Provider value={{ ...store, storeDispatch }}>
@@ -30,7 +34,12 @@ const StoreProvider: FC<{ children: ReactNode }> = ({ children }) => {
         collections={collections}
         collectionDispatch={collectionDispatch}
       >
-        {children}
+        <ValidatorsProvider
+          validators={validators}
+          validatorDispatch={validatorDispatch}
+        >
+          {children}
+        </ValidatorsProvider>
       </CollectionsProvider>
     </Provider>
   );
