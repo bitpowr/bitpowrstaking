@@ -7,7 +7,7 @@ import ValidatorsTable from "widgets/validators";
 export default function ValidatorsInCollections() {
   return (
     <AppLayout breadcrumbs="Coin Burea" headerTitle="Collectionsu /">
-      <BalanceCard />
+      <BalanceCard data={[]} />
       <div className="py-5">
         <Banner
           title="Collection"
