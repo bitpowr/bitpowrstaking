@@ -51,7 +51,9 @@ export default function Button({
       }   rounded-3xl ${themeStyle[theme]} `}
     >
       <div>{leftComponent}</div>
-      <div className="text-base ">{label || <>{children}</>}</div>
+      <div className="text-base whitespace-nowrap ">
+        {label || <>{children}</>}
+      </div>
     </button>
   );
 }

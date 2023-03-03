@@ -6,6 +6,7 @@ import Typography from "@/common/components/typography";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import DataTable, { TableColumn, Selector } from "react-data-table-component";
+import { ValidatorInfo } from "types/validators";
 import DelegateStake from "widgets/common/staking/delegateStake";
 
 type componentProps = {
@@ -36,6 +37,16 @@ export default function TopValidators({
   }
 
   const [delegateStake, setDelegateState] = useState<DataRow | null>(null);
+  const [selectedRows, setSelectedRows] = useState<Partial<ValidatorInfo>[]>(
+    []
+  );
+
+  const handleRemoveValidator = (account: string) => {
+    const validators = selectedRows?.filter(
+      (validator) => validator?.account !== account
+    );
+    setSelectedRows(validators);
+  };
 
   const columns: TableColumn<DataRow>[] = [
     {
@@ -76,7 +87,10 @@ export default function TopValidators({
       name: "Action",
       cell: (row) => (
         <Button
-          onClick={() => setDelegateState(row)}
+          onClick={() => {
+            setDelegateState(row);
+            setSelectedRows([row]);
+          }}
           size="semi-big"
           outline
           label="Delegate"
@@ -105,7 +119,14 @@ export default function TopValidators({
         data={data ?? []}
       />
       {delegateStake ? (
-        <DelegateStake onClose={() => setDelegateState(null)} visible={true} />
+        <DelegateStake
+          removeValidator={(account) => {
+            handleRemoveValidator(account);
+          }}
+          selectedValidators={selectedRows}
+          onClose={() => setDelegateState(null)}
+          visible={true}
+        />
       ) : null}
     </Card>
   );

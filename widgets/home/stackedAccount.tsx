@@ -180,10 +180,10 @@ export default function StakedAccount({}: componentProps) {
         columns={columns}
         data={data}
       />
-
+      {/* 
       {showDelegate ? (
-        <DelegateStake visible={true} onClose={() => setShowDelegate(false)} />
-      ) : null}
+        // <DelegateStake visible={true} onClose={() => setShowDelegate(false)} />
+      ) : null} */}
 
       {unDelegate ? (
         <UnDelegateStake
