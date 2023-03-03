@@ -13,6 +13,9 @@ import CollectionsProvider from "@/contexts/CollectionsProviderContext";
 import { collectionsReducer } from "@/reducers/collectionsReducer";
 import { validatorsReducer } from "@/reducers/validatorsReducer";
 import ValidatorsProvider from "@/contexts/ValidatorsProviderContext";
+import { useRouter } from "next/router";
+import agent from "@/agent";
+import { constants } from "@/reducers/constants";
 
 export const store = createContext(initialState);
 const { Provider } = store;
@@ -23,10 +26,28 @@ const StoreProvider: FC<{ children: ReactNode }> = ({ children }) => {
     collectionsReducer,
     collectionState
   );
+  const router = useRouter();
+
   const [validators, validatorDispatch] = useReducer(
     validatorsReducer,
     validatorState
   );
+
+  const handleFetchPrice = async () => {
+    try {
+      const response = await agent.get("/api/price");
+      storeDispatch({
+        type: constants.SET_USD_TO_SOL,
+        payload: response.data?.data?.SOL,
+      });
+    } catch (error) {
+      console.log(error, "k");
+    }
+  };
+
+  useEffect(() => {
+    handleFetchPrice();
+  }, []);
 
   return (
     <Provider value={{ ...store, storeDispatch }}>

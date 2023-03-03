@@ -42,28 +42,45 @@
     font-family: Proxima Nova;
   }
 }
-.table div:nth-child(1) {
+/* .table div:nth-child(1) {
   font-family: "Euclid Circular A";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
   /* identical to box height, or 171% */
-  display: flex;
-  align-items: center;
+  /* display: flex; */
+  /* align-items: center; */
   /* Dark Neutral/Base */
-  color: #001540;
-}
+  /* color: #001540; */
+/* } */
 
-.table div:nth-child(2) {
+/* .table div:nth-child(2) {
   font-family: "Proxima Nova";
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
-  line-height: 16px;
+  line-height: 16px; */
   /* identical to box height, or 133% */
-  display: flex;
-  align-items: center;
+  /* display: flex;
+  align-items: center; */
   /* Dark Neutral/Lighten 3 */
-  color: #647aa8;
+  /* color: #647aa8; */
+/* } */ 
+/*  */
+
+
+.iSAVrt.rdt_TableHeadRow{
+  border-color: transparent !important;
+  border-radius: 8px !important;
+}
+
+.sc-dmctIk .sc-hLBbgP:nth-child(1) {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.sc-dmctIk .sc-hLBbgP:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }

@@ -9,6 +9,8 @@ const customStyles = {
       paddingTop: "14px",
       paddingBottom: "14px",
       color: "#647AA8",
+      borderBottomWidth: 0,
+      borderBottomColor: "transparent",
       fontFamily: "Euclid",
     },
   },

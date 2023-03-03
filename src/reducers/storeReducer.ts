@@ -7,6 +7,13 @@ const storeReducer = (prevState: any, action: any) => {
                 ...prevState,
                 isLoading: true
             };
+        case C.SET_USD_TO_SOL:
+            return {
+                ...prevState,
+                usdToSol: action.payload
+            };
+
+
     }
 }
 export default storeReducer;
