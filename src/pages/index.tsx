@@ -97,7 +97,7 @@ export default function Home() {
   return (
     <>
       <AppLayout headerTitle="Staking">
-        <div className="lg:grid lg:grid-cols-2 lg:gap-10 mb-[40px]">
+        <div className="lg:grid lg:grid-cols-2 lg:gap-7 mb-[40px]">
           <div>
             <Card
               style={{
@@ -171,7 +171,7 @@ export default function Home() {
 
         {connected && store.usdToSol ? <BalanceCard data={data} /> : null}
 
-        <div className="lg:grid lg:grid-cols-2 w-full lg:gap-10 mt-[40px]">
+        <div className="lg:grid lg:grid-cols-2 w-full lg:gap-7 mt-[40px]">
           <MostRatedCollections />
           <TopValidators
             loading={topValidators.loading}
