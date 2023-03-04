@@ -1,6 +1,11 @@
+import { useStore } from "@/store";
 import { useWallet } from "@solana/wallet-adapter-react";
 import React from "react";
 import { ReactChildrenPropsType } from "types/global";
+import Button from "../components/button";
+import { FingerPrint } from "../components/icons";
+import PageLoader from "../components/loader/pageLoader";
+import Typography from "../components/typography";
 import Header from "./header";
 import Sidebar from "./sidebar";
 
@@ -16,6 +21,39 @@ export default function AppLayout({
   children,
 }: AppProps) {
   const { publicKey, wallet, disconnect } = useWallet();
+  const { isPageReady, isLoading, error } = useStore();
+
+  if (isLoading) {
+    return <PageLoader />;
+  }
+
+  if (error) {
+    return (
+      <div className="w-screen lg:h-screen overflow-hidden bg-primary flex items-center justify-center">
+        <div className=" text-center">
+          <FingerPrint
+            style={{ width: "20%", height: "auto", margin: "auto" }}
+          />
+          <div className="my-7">
+            <Typography
+              variant="subtitle"
+              font="proxima"
+              color="text-white"
+              label={error}
+            />
+          </div>
+          <div className="flex items-center justify-center mb-7">
+            <Button
+              onClick={() => {
+                window.location = window.location;
+              }}
+              label="Refresh"
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -26,7 +64,11 @@ export default function AppLayout({
           </div>
 
           <div className="w-full md:h-screen overflow-x-hidden overflow-y-scroll lg:px-[40px]md:px-[30px] px-[20px] pb-16">
-            <Header  account={publicKey} breadcrumbs={breadcrumbs || ""} title={headerTitle} />
+            <Header
+              account={publicKey}
+              breadcrumbs={breadcrumbs || ""}
+              title={headerTitle}
+            />
             <div className="mt-[20px]"></div>
 
             {children}

@@ -19,24 +19,8 @@ export default function TopValidators({
   data,
   connected,
 }: componentProps) {
-  interface DataRow {
-    name: string;
-    validators: string;
-    fiatAmount: string;
-    active_stake: string;
-    total_score: string;
-    account_id: string;
-    id: number;
-    avatar_url: string;
-    status: "active" | "pending";
-    created_at: string;
-    url: string;
-    commission: string;
-    earnings: string;
-    // selector: (d: any) => React.ReactElement;
-  }
-
-  const [delegateStake, setDelegateState] = useState<DataRow | null>(null);
+  const [delegateStake, setDelegateState] =
+    useState<Partial<ValidatorInfo> | null>(null);
   const [selectedRows, setSelectedRows] = useState<Partial<ValidatorInfo>[]>(
     []
   );
@@ -48,14 +32,14 @@ export default function TopValidators({
     setSelectedRows(validators);
   };
 
-  const columns: TableColumn<DataRow>[] = [
+  const columns: TableColumn<Partial<ValidatorInfo>>[] = [
     {
       name: "Validator Name",
       minWidth: "250px",
       cell: (row) => (
         <>
           <div className="flex overflow-hidden">
-            <Avatar name={row?.name} avatar_url={row?.avatar_url} />
+            <Avatar name={row?.name || ""} avatar_url={row?.avatar_url || ""} />
             <div className="ml-3">
               <Typography color="text-dark" label={row?.name} variant="body2" />
               <div className="mt-1">
@@ -76,7 +60,7 @@ export default function TopValidators({
         <div className="">
           <Typography
             color="text-dark"
-            label={row?.commission}
+            label={row?.commission?.toString()}
             variant="body2"
           />
         </div>

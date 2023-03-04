@@ -7,6 +7,7 @@ import Table from "@/common/components/table";
 import Typography from "@/common/components/typography";
 import { useCollection } from "@/contexts/CollectionsProviderContext";
 import { useValidator } from "@/contexts/ValidatorsProviderContext";
+import { useStore } from "@/store";
 import { useWallet } from "@solana/wallet-adapter-react";
 import React, { useEffect, useState } from "react";
 import DataTable, { TableColumn, Selector } from "react-data-table-component";
@@ -15,6 +16,7 @@ import DelegateStake from "widgets/common/staking/delegateStake";
 import MultipleValidatatorsButton from "./multipleValidatatorsButton";
 export default function ValidatorsTable() {
   const { publicKey, signMessage, connected } = useWallet();
+  const { usdToSol } = useStore();
   const { validators, getValidators } = useValidator();
 
   console.log(validators);
@@ -97,13 +99,16 @@ export default function ValidatorsTable() {
         <div className="">
           <div>
             <Typography
-              color="text-dark"
-              label={row?.active_stake?.toString() || "---"}
+              color="text-dark whitespace-nowrap"
+              label={row?.active_stake?.toLocaleString() || "---"}
               variant="body2"
             />
           </div>
           <div className="mt-1">
-            <Typography label={"$40,000"} variant="body1" />
+            <Typography
+              label={((row?.active_stake || 0) / usdToSol).toLocaleString()}
+              variant="body1"
+            />
           </div>
         </div>
       ),
