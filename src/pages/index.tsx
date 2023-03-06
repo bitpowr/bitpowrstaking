@@ -23,6 +23,7 @@ import { FingerPrint } from "@/common/components/icons";
 import WalletMultiButtonDynamic from "@/common/layouts/walletMultiButtonDynamic";
 import { useValidator } from "@/contexts/ValidatorsProviderContext";
 import { useRouter } from "next/router";
+import { useStore } from "@/store";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +31,7 @@ export default function Home() {
   const { getValidators, topValidators } = useValidator();
 
   const { publicKey, wallet, disconnect, connected } = useWallet();
+  const store = useStore();
 
   const router = useRouter();
 
@@ -39,7 +41,8 @@ export default function Home() {
     {
       title: "Available balance",
       info: "Available balance",
-      fiatBalance: "$7,000",
+      fiatBalance:
+        "$" + (parseInt(balance.toString()) / store?.usdToSol).toLocaleString(),
       cryptoBalance: balance.toLocaleString() + " " + "Sol",
       theme: "primary",
       img: "bg-balance-coin-one",
@@ -69,8 +72,10 @@ export default function Home() {
   useEffect(() => {
     async function loadBalance() {
       if (connected && publicKey) {
-        const b = await getAccountBalance(publicKey, "devnet");
-        setBalance(b);
+        try {
+          const b = await getAccountBalance(publicKey, "devnet");
+          setBalance(b);
+        } catch (error) {}
       }
     }
     loadBalance();
@@ -92,7 +97,7 @@ export default function Home() {
   return (
     <>
       <AppLayout headerTitle="Staking">
-        <div className="lg:grid lg:grid-cols-2 lg:gap-10 mb-[40px]">
+        <div className="lg:grid lg:grid-cols-2 lg:gap-7 mb-[40px]">
           <div>
             <Card
               style={{
@@ -164,8 +169,9 @@ export default function Home() {
           </div>
         </div>
 
-        <BalanceCard data={data} />
-        <div className="lg:grid lg:grid-cols-2 w-full lg:gap-10 mt-[40px]">
+        {connected && store.usdToSol ? <BalanceCard data={data} /> : null}
+
+        <div className="lg:grid lg:grid-cols-2 w-full lg:gap-7 mt-[40px]">
           <MostRatedCollections />
           <TopValidators
             loading={topValidators.loading}

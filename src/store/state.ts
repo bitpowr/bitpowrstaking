@@ -3,9 +3,12 @@ import { validatorPropType } from "@/reducers/validatorsReducer";
 
 export const initialState = {
     loading: true,
+    isLoading: true,
     currentDashboard: "dashboard",
+    usdToSol: 0,
     isPageReady: false,
     prices: null,
+    error: "",
     rates: null,
 };
 

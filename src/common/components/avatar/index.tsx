@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import Typography from "../typography";
 
 function pickFirstTwoWords(str: string) {
   const words = str.trim().split(" ");
@@ -11,16 +12,32 @@ function pickFirstTwoWords(str: string) {
   }
 }
 
+const randomColors = ["primary", "dark", "success", "orange", "purple"];
+
 type componentProps = {
   avatar_url: string;
   name: string;
 };
 export default function Avatar({ avatar_url, name }: componentProps) {
   const [useName, setUseName] = useState(false);
+  const [colors, setColors] = useState("");
+
+  const generateRandomColors = useCallback(() => {
+    const randomIndex = Math.floor(Math.random() * randomColors.length);
+    return "bg-" + randomColors[randomIndex];
+  }, []);
+
+  useEffect(() => {
+    setColors(generateRandomColors());
+  }, []);
   if (!avatar_url || useName) {
-    <div className="w-[40px] h-[40px] round-xl bg-dark">
-      {pickFirstTwoWords(name)}
-    </div>;
+    return (
+      <div
+        className={`w-[40px] h-[40px] flex items-center justify-center  rounded-3xl ${colors}`}
+      >
+        <Typography color="text-white" label={pickFirstTwoWords(name)} />
+      </div>
+    );
   }
   return (
     <img

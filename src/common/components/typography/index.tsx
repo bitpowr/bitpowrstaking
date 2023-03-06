@@ -7,19 +7,24 @@ type ComponentProps = {
   variant?: "title" | "subtitle" | "heading3" | "body1" | "body2" | "body3";
   label?: string;
   color?: string;
+  font?: "recoleta" | "proxima";
   className?: string;
   children?: ReactChildrenPropsType;
 };
 export default function Typography({
   className,
   variant = "body1",
+  font = "recoleta",
   color,
   children,
   label,
+  ...props
 }: ComponentProps) {
   const classStyle = {
-    title: "text-xl font-recoleta font-bold",
-    subtitle: "text-lg font-recoleta font-bold",
+    title: `text-xl font-recoleta font-bold`,
+    subtitle: `${color} text-lg  ${
+      font == "recoleta" ? "font-recoleta" : "font-sans"
+    } font-bold`,
     heading3: "",
     body1: `text-sm ${color ?? "text-light-color"}`,
     body2: `text-base ${color ?? "text-light-color"} `,
@@ -30,6 +35,7 @@ export default function Typography({
     <div
       dangerouslySetInnerHTML={{ __html: label ? label : "" }}
       className={`${classStyle[variant]} ${className}  `}
+      {...props}
     >
       {children}
     </div>

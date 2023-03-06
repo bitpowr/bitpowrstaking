@@ -60,7 +60,7 @@ export default function BalanceCard({ data }: componentProps) {
                 </svg>
               </div>
 
-              <div className="flex">
+              <div className="">
                 <Typography
                   variant="title"
                   // className="font-sans"
